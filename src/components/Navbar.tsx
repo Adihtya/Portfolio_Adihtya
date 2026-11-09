@@ -6,10 +6,11 @@ export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [currentTime, setCurrentTime] = useState<string>('');
+  const [activeTab, setActiveTab] = useState<string>('#work');
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 120);
+      setScrolled(window.scrollY > 80);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
@@ -34,85 +35,84 @@ export const Navbar: React.FC = () => {
   }, []);
 
   const navItems = [
-    { label: 'Selected Work', target: '#work', number: '01' },
-    { label: 'About', target: '#about', number: '02' },
-    { label: 'Experiments', target: '#experiments', number: '03' },
-    { label: 'Contact', target: '#contact', number: '04' },
+    { label: 'SELECTED WORK', target: '#work', number: '01' },
+    { label: 'ABOUT & BIO', target: '#about', number: '02' },
+    { label: 'EXPERIMENTS', target: '#experiments', number: '03' },
+    { label: 'CONTACT', target: '#contact', number: '04' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
     e.preventDefault();
+    setActiveTab(target);
     scrollTo(target);
     setMobileMenuOpen(false);
   };
 
   return (
     <>
-      {/* Top Fixed Header - appears when scrolled into content */}
+      {/* Top Fixed Brutalist Header */}
       <header
-        className={`fixed top-0 left-0 w-full z-50 bg-[#2D0000] border-b border-[#757D6F] px-4 md:px-8 py-3 transition-all duration-300 ${
+        className={`fixed top-0 left-0 w-full z-50 bg-[#F4F4F0] border-b-2 border-[#0F0F0F] transition-all duration-200 ${
           scrolled
-            ? 'translate-y-0 opacity-100 pointer-events-auto'
+            ? 'translate-y-0 opacity-100 shadow-hard'
             : '-translate-y-full opacity-0 pointer-events-none'
         }`}
       >
-        <div className="max-w-[1800px] mx-auto flex items-center justify-between">
-          {/* Logo / Identity */}
+        <div className="max-w-[1800px] mx-auto px-4 md:px-8 py-2.5 flex items-center justify-between">
+          {/* Brand Sticker */}
           <div className="flex items-center gap-3">
             <a
               href="#hero"
               onClick={(e) => handleNavClick(e, '#hero')}
-              className="group flex items-center gap-2.5 focus:outline-none"
+              className="flex items-center gap-2 border-2 border-[#0F0F0F] bg-[#CCFF00] px-2.5 py-1 shadow-hard-sm hover:rotate-1 transition-transform"
             >
-              <div className="w-2.5 h-2.5 bg-[#6D0808] group-hover:bg-[#EEEAD7] transition-colors" />
-              <div className="flex flex-col">
-                <span className="font-sans font-bold text-xs tracking-[0.2em] uppercase text-[#EEEAD7] group-hover:text-[#6D0808] transition-colors">
-                  ADITYA CHAUDHARI
-                </span>
-                <span className="font-mono text-[10px] text-[#757D6F] tracking-widest hidden sm:inline">
-                  SYS.ARCH // PORTFOLIO
-                </span>
-              </div>
+              <div className="w-2.5 h-2.5 bg-[#FF2A00] border border-[#0F0F0F]" />
+              <span className="font-poster text-base uppercase tracking-wider text-[#0F0F0F]">
+                ADITYA.DEV
+              </span>
             </a>
+            <span className="font-mono text-[10px] font-bold text-[#0F0F0F]/60 hidden sm:inline">
+              // URBAN BRUTALISM
+            </span>
           </div>
 
-          {/* Desktop Nav Items */}
-          <nav className="hidden lg:flex items-center gap-1">
-            {navItems.map((item) => (
-              <a
-                key={item.target}
-                href={item.target}
-                onClick={(e) => handleNavClick(e, item.target)}
-                className="group relative px-4 py-2 font-mono text-xs uppercase tracking-wider text-[#EEEAD7] transition-all hover:bg-[#6D0808] hover:text-[#EEEAD7] border border-transparent hover:border-[#EEEAD7]"
-              >
-                <span className="text-[#757D6F] group-hover:text-[#EEEAD7] mr-1.5 font-sans">
-                  [{item.number}]
-                </span>
-                <span>{item.label}</span>
-              </a>
-            ))}
+          {/* Desktop Nav Items (Raw uppercase monospace with Acid Yellow active badge) */}
+          <nav className="hidden lg:flex items-center gap-2">
+            {navItems.map((item) => {
+              const isActive = activeTab === item.target;
+              return (
+                <a
+                  key={item.target}
+                  href={item.target}
+                  onClick={(e) => handleNavClick(e, item.target)}
+                  className={`px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-wider transition-all border-2 ${
+                    isActive
+                      ? 'bg-[#CCFF00] text-[#0F0F0F] border-[#0F0F0F] shadow-hard-sm -rotate-1'
+                      : 'border-transparent text-[#0F0F0F] hover:bg-[#0F0F0F] hover:text-[#CCFF00] hover:border-[#0F0F0F]'
+                  }`}
+                >
+                  <span className="text-[#FF2A00] mr-1.5 font-bold">
+                    /{item.number}
+                  </span>
+                  <span>{item.label}</span>
+                </a>
+              );
+            })}
           </nav>
 
           {/* Live System Telemetry / Right Corner */}
-          <div className="hidden sm:flex items-center gap-4 text-right">
-            <div className="flex flex-col items-end">
-              <div className="flex items-center gap-1.5">
-                <span className="inline-block w-1.5 h-1.5 bg-[#6D0808]" />
-                <span className="font-mono text-[10px] uppercase tracking-widest text-[#EEEAD7]">
-                  PUNE, IN
-                </span>
-              </div>
-              <span className="font-mono text-[10px] text-[#757D6F] tracking-wider">
-                {currentTime || '15:30:00 IST'}
-              </span>
+          <div className="hidden sm:flex items-center gap-3 text-right">
+            <div className="border-2 border-[#0F0F0F] bg-[#F4F4F0] px-2.5 py-1 text-[11px] font-mono font-bold">
+              <span className="inline-block w-2 h-2 bg-[#CCFF00] border border-[#0F0F0F] mr-1.5" />
+              <span>{currentTime || '15:50:00 IST'}</span>
             </div>
-            
+
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, '#contact')}
-              className="px-3.5 py-1.5 bg-[#6D0808] hover:bg-[#EEEAD7] text-[#EEEAD7] hover:text-[#2D0000] font-mono text-[11px] uppercase tracking-wider font-semibold border border-[#757D6F] transition-colors"
+              className="px-4 py-1.5 bg-[#FF2A00] hover:bg-[#CCFF00] text-[#F4F4F0] hover:text-[#0F0F0F] font-mono text-xs font-bold uppercase tracking-wider border-2 border-[#0F0F0F] shadow-hard-sm btn-brutal transition-colors"
             >
-              CONTACT
+              CONTACT ↗
             </a>
           </div>
 
@@ -120,7 +120,7 @@ export const Navbar: React.FC = () => {
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle Navigation Menu"
-            className="lg:hidden px-3 py-1.5 border border-[#757D6F] text-[#EEEAD7] font-mono text-xs uppercase tracking-wider hover:bg-[#6D0808]"
+            className="lg:hidden px-3 py-1.5 border-2 border-[#0F0F0F] bg-[#CCFF00] text-[#0F0F0F] font-mono font-bold text-xs uppercase shadow-hard-sm"
           >
             {mobileMenuOpen ? 'CLOSE [✕]' : 'MENU [≡]'}
           </button>
@@ -129,11 +129,11 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-[#2D0000] flex flex-col justify-center px-8 lg:hidden border-t border-[#757D6F] pt-16">
-          <div className="flex flex-col gap-6">
-            <div className="border-b border-[#757D6F] pb-2">
-              <span className="font-mono text-xs text-[#757D6F] uppercase tracking-widest">
-                DIRECTORY
+        <div className="fixed inset-0 z-40 bg-[#F4F4F0] flex flex-col justify-center px-8 lg:hidden border-b-4 border-[#0F0F0F] pt-16">
+          <div className="flex flex-col gap-5">
+            <div className="border-b-2 border-[#0F0F0F] pb-2">
+              <span className="font-mono text-xs font-bold text-[#FF2A00] uppercase tracking-widest">
+                DIRECTORY NAVIGATION
               </span>
             </div>
             {navItems.map((item) => (
@@ -141,39 +141,25 @@ export const Navbar: React.FC = () => {
                 key={item.target}
                 href={item.target}
                 onClick={(e) => handleNavClick(e, item.target)}
-                className="group flex items-baseline justify-between py-2 border-b border-[#757D6F] text-3xl font-serif text-[#EEEAD7] hover:text-[#6D0808] transition-colors"
+                className="group flex items-baseline justify-between py-3 px-3 border-2 border-[#0F0F0F] bg-[#F4F4F0] hover:bg-[#CCFF00] font-poster text-4xl text-[#0F0F0F] shadow-hard transition-transform hover:-translate-x-1"
               >
                 <span>{item.label}</span>
-                <span className="font-mono text-sm text-[#757D6F] group-hover:text-[#EEEAD7]">
+                <span className="font-mono text-sm font-bold text-[#FF2A00]">
                   /{item.number}
                 </span>
               </a>
             ))}
-            
-            <div className="mt-8 pt-4 border-t border-[#757D6F] flex flex-col gap-2 font-mono text-xs text-[#757D6F]">
-              <div>COORDINATES: 18.5204° N, 73.8567° E</div>
+
+            <div className="mt-6 p-4 border-2 border-[#0F0F0F] bg-[#0033FF] text-[#F4F4F0] font-mono text-xs font-bold shadow-hard">
+              <div>LOCATION: PUNE, INDIA (18.52° N)</div>
               <div>EMAIL: invictableaditya@gmail.com</div>
-              <div className="mt-2 text-[#EEEAD7]">
-                [DARK EDITORIAL × EXPERIMENTAL BRUTALISM]
+              <div className="mt-2 text-[#CCFF00]">
+                URBAN BRUTALISM × STRIKE AESTHETIC
               </div>
             </div>
           </div>
         </div>
       )}
-
-      {/* Viewport Edge Frame Accents (Corner Crosshairs) */}
-      <div className="fixed top-2 left-2 z-50 pointer-events-none text-[#757D6F] font-mono text-[10px] select-none hidden md:block">
-        +
-      </div>
-      <div className="fixed top-2 right-2 z-50 pointer-events-none text-[#757D6F] font-mono text-[10px] select-none hidden md:block">
-        +
-      </div>
-      <div className="fixed bottom-2 left-2 z-50 pointer-events-none text-[#757D6F] font-mono text-[10px] select-none hidden md:block">
-        +
-      </div>
-      <div className="fixed bottom-2 right-2 z-50 pointer-events-none text-[#757D6F] font-mono text-[10px] select-none hidden md:block">
-        +
-      </div>
     </>
   );
 };

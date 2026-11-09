@@ -3,21 +3,22 @@
 @tailwind utilities;
 
 :root {
-  --color-port-wine: #2D0000;
-  --color-port-crimson: #6D0808;
-  --color-port-ivory: #EEEAD7;
-  --color-port-sage: #757D6F;
+  --strike-bg: #F4F4F0;
+  --strike-black: #0F0F0F;
+  --strike-red: #FF2A00;
+  --strike-blue: #0033FF;
+  --strike-yellow: #CCFF00;
 }
 
-/* HARD BRUTALIST EDGES ONLY - ZERO RADIUS, ZERO BOX SHADOWS */
+/* ZERO ROUNDED CORNERS - PURE RAZOR SHARP URBAN BRUTALISM */
 *, *::before, *::after {
   border-radius: 0 !important;
-  box-shadow: none !important;
 }
 
 body {
-  background-color: #2D0000 !important;
-  color: #EEEAD7 !important;
+  background-color: #F4F4F0 !important;
+  color: #0F0F0F !important;
+  font-family: 'Space Mono', 'IBM Plex Mono', monospace;
 }
 
 /* Lenis smooth scrolling rules */
@@ -37,31 +38,44 @@ html.lenis, html.lenis body {
   overflow: hidden;
 }
 
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-}
-
-/* Brutalist geometric scrollbar */
+/* Brutalist raw scrollbar */
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #2D0000;
+  background: #F4F4F0;
+  border-left: 2px solid #0F0F0F;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #757D6F;
+  background: #0F0F0F;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #EEEAD7;
+  background: #FF2A00;
 }
 
-.font-editorial {
-  font-family: 'Playfair Display', Georgia, serif;
+/* Urban Paper Grid Texture */
+.paper-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(15, 15, 15, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 15, 15, 0.06) 1px, transparent 1px);
 }
 
-.font-sans-grotesk {
-  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+/* Tactile Sticker Button press behavior */
+.btn-brutal {
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.btn-brutal:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px 0px #0F0F0F;
+}
+
+.btn-brutal:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px 0px #0F0F0F;
 }

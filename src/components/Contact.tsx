@@ -18,18 +18,21 @@ export const Contact: React.FC = () => {
       name: 'GITHUB',
       url: 'https://github.com/adityachaudhari',
       handle: '@adityachaudhari',
+      color: 'bg-[#0F0F0F] text-[#F4F4F0]',
       icon: Github,
     },
     {
       name: 'LINKEDIN',
       url: 'https://linkedin.com/in/adityachaudhari',
       handle: '/in/adityachaudhari',
+      color: 'bg-[#0033FF] text-[#F4F4F0]',
       icon: Linkedin,
     },
     {
       name: 'X (TWITTER)',
       url: 'https://x.com',
       handle: '@adityac_dev',
+      color: 'bg-[#CCFF00] text-[#0F0F0F]',
       icon: Twitter,
     },
   ];
@@ -37,50 +40,56 @@ export const Contact: React.FC = () => {
   return (
     <footer
       id="contact"
-      className="relative bg-[#2D0000] text-[#EEEAD7] border-t border-[#757D6F]/30 pt-16 md:pt-24 pb-12 overflow-hidden"
+      className="relative bg-[#F4F4F0] text-[#0F0F0F] border-t-4 border-[#0F0F0F] pt-16 md:pt-24 pb-12 overflow-hidden paper-grid select-none"
     >
       <div className="max-w-[1800px] mx-auto px-4 md:px-12">
         {/* Top Header Strip */}
-        <div className="flex flex-wrap items-center justify-between border-b border-[#757D6F]/25 pb-4 mb-12 font-mono text-xs text-[#757D6F]">
+        <div className="flex flex-wrap items-center justify-between border-b-2 border-[#0F0F0F] pb-4 mb-10 font-mono text-xs font-bold">
           <div className="flex items-center gap-3">
-            <span className="text-[#6D0808] font-bold">● SECTION // 04</span>
-            <span className="text-[#EEEAD7]">TERMINAL CONTACT PROTOCOL</span>
+            <span className="w-3 h-3 bg-[#FF2A00] border border-[#0F0F0F]" />
+            <span className="bg-[#CCFF00] px-2 py-0.5 border border-[#0F0F0F]">
+              SECTION // 04
+            </span>
+            <span>CONTACT TERMINAL PROTOCOL</span>
           </div>
-          <div className="flex items-center gap-4">
-            <span>ACCEPTING COLLABORATIONS & DEEP TECH ROLES</span>
+          <div className="bg-[#0F0F0F] text-[#F4F4F0] px-3 py-1 border border-[#0F0F0F]">
+            OPEN TO DEEP TECH COLLABORATION & RESEARCH
           </div>
         </div>
 
-        {/* Massive Serif Statement */}
+        {/* Massive Urban Poster Statement */}
         <div className="my-8 md:my-14">
-          <p className="font-mono text-xs md:text-sm text-[#6D0808] uppercase tracking-[0.3em] mb-4">
-            INITIATE SYSTEM DIALOGUE
-          </p>
-          <h2 className="font-serif text-4xl sm:text-6xl md:text-8xl lg:text-[7.25rem] xl:text-[8.5rem] leading-[0.92] tracking-tight uppercase font-normal text-[#EEEAD7]">
+          <div className="inline-block bg-[#FF2A00] text-[#F4F4F0] font-mono text-xs font-bold uppercase px-3 py-1 mb-4 border-2 border-[#0F0F0F] shadow-hard-sm -rotate-1">
+            FINAL DISPATCH // 2026
+          </div>
+
+          <h2 className="font-poster text-5xl sm:text-7xl md:text-8xl lg:text-[9.5vw] xl:text-[10.5vw] uppercase leading-[0.86] tracking-tight text-[#0F0F0F]">
             THE NEXT SYSTEM <br />
             STARTS WITH <br className="hidden sm:inline" />
-            <span className="italic font-serif text-[#EEEAD7] hover:text-[#6D0808] transition-colors">
+            <span className="inline-block bg-[#CCFF00] px-4 py-1 border-4 border-[#0F0F0F] shadow-hard transform -rotate-1 hover:rotate-1 transition-transform my-1">
               AN IDEA
             </span>
-            <span className="text-[#6D0808]">.</span>
+            <span className="text-[#FF2A00]">.</span>
           </h2>
         </div>
 
-        {/* Primary Interactive Email Box */}
-        <div className="my-12 border-2 border-[#6D0808] bg-[#2D0000] p-6 sm:p-10 lg:p-12 relative group">
-          <div className="flex items-center justify-between border-b border-[#757D6F]/30 pb-4 mb-6 font-mono text-xs">
-            <span className="text-[#757D6F] uppercase">DIRECT TRANSMISSION CHANNEL</span>
-            <span className="text-[#6D0808] font-bold">[ACTIVE INBOX]</span>
+        {/* Primary Interactive Email Box (Thick 4px border with 8px hard shadow) */}
+        <div className="my-12 border-4 border-[#0F0F0F] bg-[#F4F4F0] p-6 sm:p-10 lg:p-12 shadow-hard-xl relative">
+          <div className="flex items-center justify-between border-b-2 border-[#0F0F0F] pb-4 mb-6 font-mono text-xs font-bold">
+            <span className="uppercase text-[#0F0F0F]/60">TRANSMISSION DIRECTORY</span>
+            <span className="bg-[#CCFF00] text-[#0F0F0F] px-2 py-0.5 border border-[#0F0F0F]">
+              ACTIVE CHANNEL
+            </span>
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div>
-              <span className="font-mono text-xs text-[#757D6F] block uppercase tracking-widest mb-1">
-                CONTACT EMAIL ADDRESS
+              <span className="font-mono text-xs font-bold text-[#FF2A00] block uppercase tracking-widest mb-1">
+                COMMUNICATION ADDRESS
               </span>
               <a
                 href={`mailto:${email}`}
-                className="font-serif text-2xl sm:text-4xl lg:text-5xl text-[#EEEAD7] hover:text-[#6D0808] transition-colors tracking-tight font-normal break-all"
+                className="font-poster text-3xl sm:text-5xl lg:text-6xl text-[#0F0F0F] hover:text-[#FF2A00] transition-colors tracking-wide uppercase break-all"
               >
                 {email}
               </a>
@@ -89,25 +98,25 @@ export const Contact: React.FC = () => {
             <div className="flex flex-wrap items-center gap-3">
               <button
                 onClick={copyEmail}
-                className="px-6 py-3.5 bg-[#6D0808] hover:bg-[#EEEAD7] text-[#EEEAD7] hover:text-[#2D0000] font-mono text-xs uppercase tracking-wider font-semibold border border-[#EEEAD7]/20 flex items-center gap-2 transition-all"
+                className="px-6 py-3.5 bg-[#FF2A00] hover:bg-[#CCFF00] text-[#F4F4F0] hover:text-[#0F0F0F] font-mono text-xs uppercase tracking-wider font-bold border-2 border-[#0F0F0F] shadow-hard flex items-center gap-2 btn-brutal transition-all"
               >
-                {copied ? <Check className="w-4 h-4 text-green-400" /> : <Copy className="w-4 h-4" />}
-                <span>{copied ? 'COPIED TO CLIPBOARD' : 'COPY EMAIL'}</span>
+                {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                <span>{copied ? 'COPIED TO CLIPBOARD!' : 'COPY EMAIL ADDRESS'}</span>
               </button>
 
               <a
                 href={`mailto:${email}`}
-                className="px-6 py-3.5 bg-transparent hover:bg-[#EEEAD7]/10 text-[#EEEAD7] font-mono text-xs uppercase tracking-wider border border-[#757D6F]/50 hover:border-[#EEEAD7] flex items-center gap-2 transition-all"
+                className="px-6 py-3.5 bg-[#CCFF00] hover:bg-[#0F0F0F] text-[#0F0F0F] hover:text-[#CCFF00] font-mono text-xs uppercase tracking-wider font-bold border-2 border-[#0F0F0F] shadow-hard flex items-center gap-2 btn-brutal transition-all"
               >
-                <span>OPEN CLIENT</span>
+                <span>SEND MAIL</span>
                 <ArrowUpRight className="w-4 h-4" />
               </a>
             </div>
           </div>
         </div>
 
-        {/* Brutalist Social & Network Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-16">
+        {/* Social Stickers Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           {socialLinks.map((link) => {
             const Icon = link.icon;
             return (
@@ -116,17 +125,15 @@ export const Contact: React.FC = () => {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group border border-[#757D6F]/30 hover:border-[#EEEAD7] bg-[#2D0000] p-6 flex flex-col justify-between transition-all duration-200"
+                className={`border-4 border-[#0F0F0F] p-6 flex flex-col justify-between shadow-hard hover:-translate-y-1 hover:shadow-hard-lg transition-all duration-150 ${link.color}`}
               >
-                <div className="flex items-center justify-between border-b border-[#757D6F]/20 pb-3 mb-4 font-mono text-xs text-[#757D6F]">
-                  <span className="group-hover:text-[#6D0808] transition-colors">
-                    {link.name}
-                  </span>
-                  <ArrowUpRight className="w-4 h-4 text-[#EEEAD7] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                <div className="flex items-center justify-between border-b-2 border-current pb-3 mb-4 font-mono text-xs font-bold">
+                  <span>{link.name}</span>
+                  <ArrowUpRight className="w-4 h-4" />
                 </div>
                 <div className="flex items-center gap-3">
-                  <Icon className="w-5 h-5 text-[#EEEAD7] group-hover:text-[#6D0808] transition-colors" />
-                  <span className="font-mono text-sm text-[#EEEAD7] font-semibold">
+                  <Icon className="w-6 h-6" />
+                  <span className="font-mono text-base font-bold">
                     {link.handle}
                   </span>
                 </div>
@@ -135,32 +142,31 @@ export const Contact: React.FC = () => {
           })}
         </div>
 
-        {/* Bottom Architectural Credits & Top Scroll */}
-        <div className="border-t border-[#757D6F]/30 pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 font-mono text-xs text-[#757D6F]">
+        {/* Bottom Credits & Jump to Top */}
+        <div className="border-t-2 border-[#0F0F0F] pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 font-mono text-xs font-bold">
           <div className="space-y-1">
-            <div className="text-[#EEEAD7]">
-              ADITYA CHAUDHARI // PORTFOLIO 2026
+            <div className="text-sm font-poster uppercase tracking-wide">
+              ADITYA CHAUDHARI // 2026 EDITION
             </div>
-            <div>
+            <div className="text-[#0F0F0F]/70">
               B.TECH CS & AI • UPGRAD SCHOOL OF TECHNOLOGY, PUNE
             </div>
-            <div className="text-[10px] text-[#757D6F]/80">
-              BUILT WITH REACT 18 • THREE.JS (R3F) • GSAP SCROLLTRIGGER • LENIS • TAILWIND CSS
+            <div className="text-[10px] text-[#0F0F0F]/50">
+              URBAN BRUTALIST ARCHITECTURE • HARD SHADOWS • ZERO SOFT CORNERS
             </div>
           </div>
 
-          <div className="flex items-center gap-6">
-            <div className="text-right hidden sm:block">
-              <div>ZERO ROUNDED EDGES</div>
-              <div className="text-[#6D0808]">DARK EDITORIAL × BRUTALISM</div>
-            </div>
+          <div className="flex items-center gap-4">
+            <span className="hidden sm:inline bg-[#CCFF00] px-2 py-1 border border-[#0F0F0F]">
+              STRIKE.UNO INSPIRED
+            </span>
 
             <button
               onClick={() => scrollTo('#hero')}
-              className="p-3 bg-[#6D0808] hover:bg-[#EEEAD7] text-[#EEEAD7] hover:text-[#2D0000] border border-[#EEEAD7]/20 transition-colors flex items-center gap-2 uppercase tracking-wider font-mono text-xs"
+              className="p-3 bg-[#0F0F0F] hover:bg-[#FF2A00] text-[#F4F4F0] border-2 border-[#0F0F0F] shadow-hard-sm transition-colors flex items-center gap-2 uppercase font-bold"
             >
               <ArrowUp className="w-4 h-4" />
-              <span>TOP</span>
+              <span>BACK TO TOP</span>
             </button>
           </div>
         </div>
