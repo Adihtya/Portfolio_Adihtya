@@ -16,22 +16,22 @@ export const Contact: React.FC = () => {
   const socialLinks = [
     {
       name: 'GITHUB',
-      url: 'https://github.com/adityachaudhari',
-      handle: '@adityachaudhari',
+      url: 'https://github.com/Adihtya',
+      handle: '@Adihtya',
       color: 'bg-[#0F0F0F] text-[#F4F4F0]',
       icon: Github,
     },
     {
       name: 'LINKEDIN',
-      url: 'https://linkedin.com/in/adityachaudhari',
-      handle: '/in/adityachaudhari',
+      url: 'https://www.linkedin.com/in/adihtya',
+      handle: '/in/adihtya',
       color: 'bg-[#0033FF] text-[#F4F4F0]',
       icon: Linkedin,
     },
     {
       name: 'X (TWITTER)',
-      url: 'https://x.com',
-      handle: '@adityac_dev',
+      url: 'https://x.com/adihtya0to1',
+      handle: '@adihtya0to1',
       color: 'bg-[#CCFF00] text-[#0F0F0F]',
       icon: Twitter,
     },
@@ -78,7 +78,7 @@ export const Contact: React.FC = () => {
           <div className="flex items-center justify-between border-b-2 border-[#0F0F0F] pb-4 mb-6 font-mono text-xs font-bold">
             <span className="uppercase text-[#0F0F0F]/60">TRANSMISSION DIRECTORY</span>
             <span className="bg-[#CCFF00] text-[#0F0F0F] px-2 py-0.5 border-2 border-[#0F0F0F]">
-              ACTIVE CHANNEL
+              ACTIVE INBOX
             </span>
           </div>
 
@@ -115,7 +115,7 @@ export const Contact: React.FC = () => {
           </div>
         </div>
 
-        {/* Social Stickers Grid with brutalist-shadow */}
+        {/* Real Social Stickers Grid with target="_blank" and rel="noopener noreferrer" */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
           {socialLinks.map((link) => {
             const Icon = link.icon;
@@ -157,9 +157,14 @@ export const Contact: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-4">
-            <span className="hidden sm:inline bg-[#CCFF00] px-2 py-1 border-2 border-[#0F0F0F] brutalist-shadow">
-              STRIKE.UNO INSPIRED
-            </span>
+            <a
+              href="https://github.com/Adihtya"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline bg-[#CCFF00] px-2 py-1 border-2 border-[#0F0F0F] brutalist-shadow text-[#0F0F0F] hover:bg-[#FF2A00] hover:text-[#F4F4F0] transition-colors"
+            >
+              GITHUB: @ADIHTYA ↗
+            </a>
 
             <button
               onClick={() => scrollTo('#hero')}

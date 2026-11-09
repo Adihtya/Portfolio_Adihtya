@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Github, Terminal, ChevronRight } from 'lucide-react';
+import { Github, Terminal, ExternalLink } from 'lucide-react';
 import { Project } from '../types';
+import { TechIcon } from './TechIcon';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,7 +23,7 @@ const PROJECTS: Project[] = [
     stack: ['Python', 'React', 'FastAPI', 'AST', 'Tree-Sitter', 'ChromaDB'],
     metrics: { label: 'SYNTAX PROCESSING SPEED', value: '185,000 LOC/s' },
     category: 'CODE INTELLIGENCE',
-    githubUrl: 'https://github.com/adityachaudhari',
+    githubUrl: 'https://github.com/Adihtya/UNFOLD',
   },
   {
     id: 'vashexad',
@@ -36,10 +37,10 @@ const PROJECTS: Project[] = [
       'Configurable synaptic delay queues with STDP plasticity mechanics',
       'Real-time membrane potential oscilloscope rendering via WebGL',
     ],
-    stack: ['Python', 'C++', 'LIF Dynamics', 'WebGL', 'NumPy', 'Canvas API'],
+    stack: ['Python', 'C++', 'LIF', 'WebGL', 'NumPy', 'Canvas'],
     metrics: { label: 'SYNAPSE RECONSTRUCTION', value: '130,000+ CIRCUITS' },
     category: 'CONNECTOME SIMULATION',
-    githubUrl: 'https://github.com/adityachaudhari',
+    githubUrl: 'https://github.com/laksh1711/VasHexad',
   },
   {
     id: 'watch-or-skip',
@@ -51,29 +52,30 @@ const PROJECTS: Project[] = [
     details: [
       'High-dimensional cinematic embedding space trained on critical sentiment',
       'Instantaneous zero-drift vector similarity filtering with sub-40ms cache hits',
-      'Dynamic urban brutalist UI with aggressive typography',
+      'Dynamic urban brutalist UI with responsive typographical density',
     ],
-    stack: ['React', 'Next.js', 'FastAPI', 'Redis', 'Vector Search', 'Tailwind'],
+    stack: ['React', 'Next.js', 'FastAPI', 'Redis', 'Python'],
     metrics: { label: 'CATALOG ACCURACY SCORE', value: '98.7% CONFIDENCE' },
     category: 'RECOMMENDATION ENGINE',
-    githubUrl: 'https://github.com/adityachaudhari',
+    githubUrl: 'https://github.com/Adihtya/Watch_Or_Skip',
+    liveUrl: 'https://adihtya.github.io/Watch_Or_Skip/',
   },
   {
-    id: 'brazil-ecommerce',
+    id: 'scope',
     number: '04',
-    title: 'BRAZIL E-COMM',
-    subtitle: 'Spatial Logistics Analytics & Route Optimization',
+    title: 'SCOPE',
+    subtitle: 'High-Precision System Diagnostics & Runtime Observability',
     description:
-      'End-to-end data analytics and predictive logistics pipeline operating on over 100,000 multi-regional Brazilian marketplace transactions. Identifies distribution bottlenecks and forecasts delivery latency across continental geography.',
+      'Lightweight runtime instrumentation and execution profiling system engineered in C++ and Python. Captures execution bottlenecks, thread concurrency contention, and memory heap allocation patterns with sub-microsecond overhead.',
     details: [
-      'Geospatial customer and seller route clustering across 27 federal states',
-      'Random Forest regression predicting delivery delays with 94.2% precision',
-      'High-density telemetry dashboard visualizing order throughput',
+      'Sub-microsecond function tracing and CPU instruction cycle metrics',
+      'Deterministic thread locking latency and dead-lock graph detection',
+      'Terminal-first visualization and real-time structured telemetry stream',
     ],
-    stack: ['Python', 'Pandas', 'Scikit-Learn', 'BigQuery', 'D3.js', 'Tailwind'],
-    metrics: { label: 'RECORD SET ANALYZED', value: '100K+ TRANSACTIONS' },
-    category: 'DATA SYSTEMS & ML',
-    githubUrl: 'https://github.com/adityachaudhari',
+    stack: ['C++', 'Python', 'FastAPI', 'Docker', 'React'],
+    metrics: { label: 'TRACE LATENCY OVERHEAD', value: '< 1.4 µs' },
+    category: 'SYSTEMS OBSERVABILITY',
+    githubUrl: 'https://github.com/Adihtya/Scope',
   },
 ];
 
@@ -142,7 +144,7 @@ export const SelectedWork: React.FC = () => {
         <div className="flex items-center gap-3">
           <span className="w-2.5 h-2.5 bg-[#FF2A00] border-2 border-[#0F0F0F] inline-block" />
           <span>SECTION // 01</span>
-          <span>SELECTED WORK</span>
+          <span>SELECTED WORK ARCHIVE</span>
         </div>
 
         {/* Live Index Indicators */}
@@ -168,7 +170,7 @@ export const SelectedWork: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Container */}
+      {/* Main Horizontal Panels Container */}
       <div
         ref={containerRef}
         className="flex flex-col lg:flex-row w-full lg:w-[400vw] h-auto lg:h-[calc(100vh-3.2rem)] relative"
@@ -194,7 +196,7 @@ export const SelectedWork: React.FC = () => {
                 </span>
               </div>
               <div className="text-right bg-[#0F0F0F] text-[#CCFF00] px-2 py-0.5 border-2 border-[#0F0F0F]">
-                RELEASE // 2025–2026
+                PRODUCTION BUILD
               </div>
             </div>
 
@@ -231,14 +233,15 @@ export const SelectedWork: React.FC = () => {
                   ))}
                 </div>
 
-                {/* Tech Stack Chips (Slapped sticker tags with hard shadow) */}
+                {/* Tech Stack Chips with Official Technology Logos */}
                 <div className="flex flex-wrap gap-2.5 pt-2">
                   {project.stack.map((t) => (
                     <span
                       key={t}
-                      className="px-3 py-1 font-mono text-xs font-bold uppercase tracking-wider bg-[#CCFF00] border-2 border-[#0F0F0F] brutalist-shadow text-[#0F0F0F]"
+                      className="px-3 py-1 font-mono text-xs font-bold uppercase tracking-wider bg-[#CCFF00] border-2 border-[#0F0F0F] brutalist-shadow text-[#0F0F0F] flex items-center gap-2"
                     >
-                      {t}
+                      <TechIcon name={t} className="w-3.5 h-3.5 flex-shrink-0" />
+                      <span>{t}</span>
                     </span>
                   ))}
                 </div>
@@ -332,22 +335,22 @@ export const SelectedWork: React.FC = () => {
                     <div className="space-y-3 font-mono text-xs">
                       <div className="bg-[#1a1a1a] p-3 border-2 border-[#F4F4F0]">
                         <div className="text-[#CCFF00] text-[10px] uppercase font-bold mb-1">
-                          SPATIAL ROUTING // BR
+                          RUNTIME INSTRUCTION PROFILING // SCOPE
                         </div>
                         <div className="space-y-1 text-[11px]">
                           <div className="flex justify-between">
-                            <span className="text-[#F4F4F0]/60">SP → RJ HUB:</span>
-                            <span className="text-[#CCFF00] font-bold">1.2 DAYS [OPTIMAL]</span>
+                            <span className="text-[#F4F4F0]/60">THREAD MUTEX LOCK:</span>
+                            <span className="text-[#CCFF00] font-bold">0.34 µs [ZERO CONTENTION]</span>
                           </div>
                           <div className="flex justify-between">
-                            <span className="text-[#F4F4F0]/60">SP → AM REGION:</span>
-                            <span className="text-[#FF2A00] font-bold">4.8 DAYS [DELAY]</span>
+                            <span className="text-[#F4F4F0]/60">HEAP ALLOCATIONS:</span>
+                            <span className="text-[#FF2A00] font-bold">0.00% DRIFT</span>
                           </div>
                         </div>
                       </div>
                       <div className="flex justify-between items-center text-xs pt-1 border-t border-[#F4F4F0]/30 font-bold">
-                        <span className="text-[#F4F4F0]/60">MODEL SCORE:</span>
-                        <span className="text-[#CCFF00]">RMSE = 0.148</span>
+                        <span className="text-[#F4F4F0]/60">TRACE OVERHEAD:</span>
+                        <span className="text-[#CCFF00]">&lt; 1.4 µs</span>
                       </div>
                     </div>
                   )}
@@ -363,24 +366,29 @@ export const SelectedWork: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Action Links with Hard Shadows */}
-                <div className="flex items-center gap-3">
+                {/* Real Action Links with Hard Shadows */}
+                <div className="flex flex-wrap items-center gap-3">
                   <a
-                    href={project.githubUrl || 'https://github.com/adityachaudhari'}
+                    href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 py-3 px-4 bg-[#FF2A00] hover:bg-[#CCFF00] text-[#F4F4F0] hover:text-[#0F0F0F] font-mono text-xs uppercase tracking-wider font-bold border-2 border-[#0F0F0F] brutalist-shadow flex items-center justify-center gap-2 transition-colors"
                   >
                     <Github className="w-4 h-4" />
-                    <span>SOURCE // GITHUB</span>
+                    <span>CODEBASE // GITHUB</span>
                   </a>
-                  <a
-                    href="#contact"
-                    className="py-3 px-4 bg-[#F4F4F0] hover:bg-[#0F0F0F] text-[#0F0F0F] hover:text-[#F4F4F0] font-mono text-xs uppercase tracking-wider font-bold border-2 border-[#0F0F0F] brutalist-shadow flex items-center justify-center gap-1 transition-colors"
-                  >
-                    <span>AUDIT</span>
-                    <ChevronRight className="w-4 h-4" />
-                  </a>
+
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="py-3 px-4 bg-[#CCFF00] hover:bg-[#0F0F0F] text-[#0F0F0F] hover:text-[#CCFF00] font-mono text-xs uppercase tracking-wider font-bold border-2 border-[#0F0F0F] brutalist-shadow flex items-center justify-center gap-1.5 transition-colors"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      <span>LIVE DEMO</span>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>
@@ -389,10 +397,10 @@ export const SelectedWork: React.FC = () => {
             <div className="flex flex-wrap items-center justify-between border-t-2 border-[#0F0F0F] pt-4 mt-6 font-mono text-xs font-bold text-[#0F0F0F]">
               <div className="flex items-center gap-3">
                 <span className="bg-[#CCFF00] px-2 py-0.5 border-2 border-[#0F0F0F] brutalist-shadow">
-                  PRODUCTION READY
+                  GITHUB VERIFIED
                 </span>
                 <span className="hidden sm:inline">•</span>
-                <span className="hidden sm:inline">RECURRENT DETERMINISTIC</span>
+                <span className="hidden sm:inline">DETERMINISTIC SYSTEMS</span>
               </div>
               <div className="bg-[#0F0F0F] text-[#CCFF00] px-2 py-0.5 border-2 border-[#0F0F0F]">
                 SCROLL FOR NEXT PROTOCOL →

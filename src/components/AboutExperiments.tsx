@@ -2,107 +2,122 @@ import React, { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight, Terminal } from 'lucide-react';
-import { Experiment, SkillItem } from '../types';
+import { Experiment } from '../types';
+import { TechIcon } from './TechIcon';
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface StickerSkill extends SkillItem {
-  color: string;
-  textColor: string;
+interface ToolkitSticker {
+  id: string;
+  name: string;
+  bg: string;
+  text: string;
+  subtext: string;
+  tag: string;
+  spec: string;
   rotation: string;
-  badge: string;
+  note: string;
 }
 
-const STICKER_TOOLKIT: StickerSkill[] = [
+const TOOLKIT_STICKERS: ToolkitSticker[] = [
   {
-    name: 'Python',
-    category: 'Core',
-    level: 'Advanced Architect',
-    note: 'NumPy, AST grammar parsing, LIF connectome simulations, vector embeddings, backend microservices',
-    color: 'bg-[#CCFF00]',
-    textColor: 'text-[#0F0F0F]',
-    rotation: '-rotate-3',
-    badge: '★ CORE 01',
-  },
-  {
-    name: 'C++',
-    category: 'Systems',
-    level: 'Performance Kernel',
-    note: 'Manual memory management, numerical solvers, low-level data structure optimization, tight loops',
-    color: 'bg-[#FF2A00]',
-    textColor: 'text-[#F4F4F0]',
-    rotation: 'rotate-4',
-    badge: '⚡ SPEED',
-  },
-  {
-    name: 'React',
-    category: 'Web',
-    level: 'Interactive Systems',
-    note: 'Complex reactive architectures, custom state machines, WebGL canvas integrations, high-density HUDs',
-    color: 'bg-[#0033FF]',
-    textColor: 'text-[#F4F4F0]',
+    id: '01',
+    name: 'PYTHON',
+    bg: 'bg-[#CCFF00]',
+    text: 'text-[#0F0F0F]',
+    subtext: 'ADVANCED ARCHITECT',
+    tag: 'SYS // CORE',
+    spec: 'V3.12+',
     rotation: '-rotate-2',
-    badge: '● UI SYS',
+    note: 'NumPy, AST grammar decomposition, LIF connectome simulations, vector embeddings, high-throughput microservices.',
   },
   {
-    name: 'Next.js',
-    category: 'Web',
-    level: 'Production Scale',
-    note: 'Server components, edge API routes, dynamic streaming pipelines, static generation',
-    color: 'bg-[#F4F4F0]',
-    textColor: 'text-[#0F0F0F]',
-    rotation: 'rotate-6',
-    badge: '▲ EDGE',
-  },
-  {
-    name: 'FastAPI',
-    category: 'Systems',
-    level: 'High-Throughput API',
-    note: 'Asynchronous Python concurrency, Pydantic type safety, vector similarity inference endpoints',
-    color: 'bg-[#CCFF00]',
-    textColor: 'text-[#0F0F0F]',
-    rotation: '-rotate-6',
-    badge: '⚡ 10K REQ/S',
-  },
-  {
-    name: 'OpenCV',
-    category: 'Core',
-    level: 'Computer Vision',
-    note: 'Real-time gesture recognition, spatial plane projection, 21 3D hand landmark coordinate tracking',
-    color: 'bg-[#FF2A00]',
-    textColor: 'text-[#F4F4F0]',
+    id: '02',
+    name: 'C++',
+    bg: 'bg-[#FF2A00]',
+    text: 'text-[#F4F4F0]',
+    subtext: 'PERFORMANCE KERNEL',
+    tag: 'SYS // KERNEL',
+    spec: 'C++20',
     rotation: 'rotate-3',
-    badge: '👁 VISION',
+    note: 'Low-latency execution loops, memory management, deterministic data structures, numerical Euler integrators.',
   },
   {
-    name: 'Three.js',
-    category: 'Graphics',
-    level: 'WebGL Specialist',
-    note: '4D hypercube projection, procedural shaders, instanced mesh transforms, responsive interactive scenes',
-    color: 'bg-[#0033FF]',
-    textColor: 'text-[#F4F4F0]',
-    rotation: '-rotate-4',
-    badge: '✦ 3D / 4D',
-  },
-  {
-    name: 'PyTorch',
-    category: 'Core',
-    level: 'Deep Learning',
-    note: 'Neural tensor dynamics, transformer embedding pipelines, custom mathematical loss landscapes',
-    color: 'bg-[#F4F4F0]',
-    textColor: 'text-[#0F0F0F]',
-    rotation: 'rotate-2',
-    badge: '◆ TENSOR',
-  },
-  {
-    name: 'Docker',
-    category: 'Systems',
-    level: 'Deterministic DevOps',
-    note: 'Multi-stage hermetic containerization, isolated reproducible development sandboxes',
-    color: 'bg-[#CCFF00]',
-    textColor: 'text-[#0F0F0F]',
+    id: '03',
+    name: 'REACT',
+    bg: 'bg-[#0033FF]',
+    text: 'text-[#FFFFFF]',
+    subtext: 'INTERACTIVE SYSTEMS',
+    tag: 'UI // REACTIVE',
+    spec: 'V18/19',
     rotation: '-rotate-1',
-    badge: '■ CONTAINER',
+    note: 'Complex state trees, canvas hooks, high-density telemetry dashboards, custom gesture controllers.',
+  },
+  {
+    id: '04',
+    name: 'NEXT.JS',
+    bg: 'bg-[#FFFFFF]',
+    text: 'text-[#0F0F0F]',
+    subtext: 'PRODUCTION SCALE',
+    tag: 'WEB // EDGE',
+    spec: 'APP ROUTER',
+    rotation: 'rotate-4',
+    note: 'Server components, edge API streaming, dynamic ISR architectures, high-performance static rendering.',
+  },
+  {
+    id: '05',
+    name: 'FASTAPI',
+    bg: 'bg-[#CCFF00]',
+    text: 'text-[#0F0F0F]',
+    subtext: 'HIGH-THROUGHPUT API',
+    tag: 'API // ASYNC',
+    spec: 'ASGI ASYNC',
+    rotation: '-rotate-3',
+    note: 'Asynchronous event loops, OpenAPI schema generation, vector retrieval inference pipelines, microsecond caching.',
+  },
+  {
+    id: '06',
+    name: 'OPENCV',
+    bg: 'bg-[#FF2A00]',
+    text: 'text-[#F4F4F0]',
+    subtext: 'COMPUTER VISION',
+    tag: 'CV // SPATIAL',
+    spec: 'REAL-TIME',
+    rotation: 'rotate-2',
+    note: 'Spatial plane projection, 21 3D hand keypoint tracking, frame matrix transformation, gesture classification.',
+  },
+  {
+    id: '07',
+    name: 'THREE.JS',
+    bg: 'bg-[#0033FF]',
+    text: 'text-[#FFFFFF]',
+    subtext: 'WEBGL SPECIALIST',
+    tag: '3D // SHADERS',
+    spec: 'R3F + DREI',
+    rotation: '-rotate-2',
+    note: '4D hypercube projections, procedural materials, instanced matrix transforms, camera viewport math.',
+  },
+  {
+    id: '08',
+    name: 'PYTORCH',
+    bg: 'bg-[#FFFFFF]',
+    text: 'text-[#0F0F0F]',
+    subtext: 'DEEP LEARNING',
+    tag: 'AI // TENSOR',
+    spec: 'CUDA ACCEL',
+    rotation: 'rotate-3',
+    note: 'Tensor algebra, neural connectomics, embedding spaces, loss function engineering, transformer models.',
+  },
+  {
+    id: '09',
+    name: 'DOCKER',
+    bg: 'bg-[#CCFF00]',
+    text: 'text-[#0F0F0F]',
+    subtext: 'DETERMINISTIC DEVOPS',
+    tag: 'OPS // ISOLATION',
+    spec: 'HERMETIC',
+    rotation: '-rotate-1',
+    note: 'Multi-stage hermetic containerization, reproducible development sandboxes, isolated compute environments.',
   },
 ];
 
@@ -123,7 +138,7 @@ const EXPERIMENTS: Experiment[] = [
     title: 'NEURAL SIMULATION',
     description:
       'Real-time numerical integrator for biological Leaky Integrate-and-Fire (LIF) neural circuits. Simulates sub-threshold membrane decay, threshold depolarization, and refractory recovery periods.',
-    tech: ['WebGL', 'Python', 'Three.js', 'LIF Dynamics'],
+    tech: ['WebGL', 'Python', 'Three.js', 'LIF'],
     status: 'STABLE',
     year: '2025',
   },
@@ -133,7 +148,7 @@ const EXPERIMENTS: Experiment[] = [
     title: 'LATENT ATLAS',
     description:
       'High-dimensional semantic embedding projection. Visualizes dense vector clustering in 3D space using instanced geometry and interactive cosine distance heatmaps.',
-    tech: ['Three.js', 'FastAPI', 'ChromaDB', 'TypeScript'],
+    tech: ['Three.js', 'FastAPI', 'ChromaDB', 'Python'],
     status: 'EXPERIMENTAL',
     year: '2026',
   },
@@ -143,32 +158,32 @@ const EXPERIMENTS: Experiment[] = [
     title: 'SYNTAX KERNEL',
     description:
       'Deterministic BNF grammar parsing engine converting source token streams into directed acyclic dependency graphs with cycle detection and dead-code elimination.',
-    tech: ['C++', 'Python', 'AST', 'Compiler Design'],
+    tech: ['C++', 'Python', 'AST', 'Compiler'],
     status: 'ACTIVE',
     year: '2026',
   },
 ];
 
 export const AboutExperiments: React.FC = () => {
-  const [selectedSkill, setSelectedSkill] = useState<StickerSkill>(STICKER_TOOLKIT[0]);
+  const [activeSticker, setActiveSticker] = useState<ToolkitSticker>(TOOLKIT_STICKERS[0]);
   const sectionRef = useRef<HTMLElement>(null);
-  const stickersRef = useRef<HTMLDivElement>(null);
+  const stickersContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const stickersContainer = stickersRef.current;
-    if (!stickersContainer) return;
+    const container = stickersContainerRef.current;
+    if (!container) return;
 
     const ctx = gsap.context(() => {
-      gsap.from('.toolkit-sticker', {
-        scale: 0.2,
+      gsap.from('.brutalist-sticker-item', {
+        scale: 0.3,
         opacity: 0,
         y: 40,
-        rotation: () => (Math.random() - 0.5) * 45,
-        duration: 0.7,
-        stagger: 0.08,
+        rotation: () => (Math.random() - 0.5) * 40,
+        duration: 0.65,
+        stagger: 0.07,
         ease: 'back.out(2)',
         scrollTrigger: {
-          trigger: stickersContainer,
+          trigger: container,
           start: 'top 80%',
         },
       });
@@ -252,7 +267,7 @@ export const AboutExperiments: React.FC = () => {
         </div>
       </div>
 
-      {/* SECTION 02: SCATTERED SLAPPED STICKERS TOOLKIT */}
+      {/* SECTION 02: SCATTERED PHYSICAL BRUTALIST TOOLKIT STICKERS */}
       <div className="border-b-2 border-[#0F0F0F] px-4 md:px-12 py-16 md:py-20 max-w-[1800px] mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 pb-4 border-b-2 border-[#0F0F0F]">
           <div>
@@ -269,85 +284,101 @@ export const AboutExperiments: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Scattered Slapped Stickers Container */}
+          {/* Scattered Physical Stickers Container (Slightly overlapping flex-wrap layout) */}
           <div
-            ref={stickersRef}
-            className="lg:col-span-8 flex flex-wrap gap-4 sm:gap-6 p-4 sm:p-8 border-2 border-[#0F0F0F] bg-[#F4F4F0] brutalist-shadow"
+            ref={stickersContainerRef}
+            className="lg:col-span-8 p-4 sm:p-8 border-2 border-[#0F0F0F] bg-[#F4F4F0] brutalist-shadow"
           >
-            {STICKER_TOOLKIT.map((tool) => {
-              const isSelected = selectedSkill.name === tool.name;
-              return (
-                <button
-                  key={tool.name}
-                  onClick={() => setSelectedSkill(tool)}
-                  onMouseEnter={() => setSelectedSkill(tool)}
-                  className={`toolkit-sticker group relative p-3 sm:p-4 border-2 border-[#0F0F0F] brutalist-shadow font-mono text-left cursor-pointer ${
-                    tool.color
-                  } ${tool.textColor} ${tool.rotation} ${
-                    isSelected
-                      ? 'scale-110 z-30 ring-4 ring-[#0F0F0F]'
-                      : 'hover:scale-105 hover:z-20'
-                  }`}
-                >
-                  <div className="flex items-center justify-between gap-3 text-[10px] font-bold mb-1 opacity-80">
-                    <span>{tool.badge}</span>
-                    <span>#{tool.category.toUpperCase()}</span>
-                  </div>
-                  <div className="font-poster text-2xl sm:text-3xl lg:text-4xl uppercase tracking-wide leading-none">
-                    {tool.name}
-                  </div>
-                  <div className="text-[10px] font-bold mt-1 uppercase underline decoration-[#0F0F0F]">
-                    {tool.level}
-                  </div>
-                </button>
-              );
-            })}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 items-stretch">
+              {TOOLKIT_STICKERS.map((sticker) => {
+                const isSelected = activeSticker.id === sticker.id;
+                return (
+                  <button
+                    key={sticker.id}
+                    onClick={() => setActiveSticker(sticker)}
+                    onMouseEnter={() => setActiveSticker(sticker)}
+                    className={`brutalist-sticker-item group relative p-4 sm:p-5 border-2 border-[#0F0F0F] brutalist-shadow text-left cursor-pointer flex flex-col justify-between transition-all duration-200 ${
+                      sticker.bg
+                    } ${sticker.text} ${sticker.rotation} ${
+                      isSelected
+                        ? 'scale-105 z-30 ring-4 ring-[#0F0F0F]'
+                        : 'hover:scale-105 hover:z-20 hover:rotate-0'
+                    }`}
+                  >
+                    {/* Top-left / top-right micro-metadata row */}
+                    <div className="flex items-center justify-between text-[10px] font-mono font-bold tracking-wider opacity-80 mb-2 border-b border-current pb-1.5">
+                      <span>{sticker.tag}</span>
+                      <span>{sticker.spec}</span>
+                    </div>
+
+                    {/* Massive center title with official tech logo */}
+                    <div className="flex items-center gap-2.5 my-3">
+                      <TechIcon name={sticker.name} className="w-8 h-8 sm:w-9 sm:h-9 flex-shrink-0" />
+                      <span className="font-poster text-3xl sm:text-4xl uppercase tracking-wide leading-none">
+                        {sticker.name}
+                      </span>
+                    </div>
+
+                    {/* Bottom subtext row */}
+                    <div className="pt-2 border-t border-current flex items-center justify-between font-mono text-[11px] font-bold uppercase tracking-wider">
+                      <span className="bg-[#0F0F0F] text-[#F4F4F0] px-1.5 py-0.5">
+                        {sticker.subtext}
+                      </span>
+                      <span className="text-[10px] opacity-75">#{sticker.id}</span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          {/* Active Skill Inspector HUD */}
-          <div className="lg:col-span-4 border-2 border-[#0F0F0F] bg-[#0F0F0F] text-[#F4F4F0] p-6 brutalist-shadow font-mono text-xs relative">
+          {/* Active Sticker Inspector HUD */}
+          <div className="lg:col-span-4 border-2 border-[#0F0F0F] bg-[#0F0F0F] text-[#F4F4F0] p-6 brutalist-shadow font-mono text-xs relative sticky top-24">
             <div className="flex items-center justify-between border-b-2 border-[#F4F4F0] pb-3 mb-4">
               <span className="font-bold text-[#CCFF00] uppercase flex items-center gap-2">
                 <Terminal className="w-4 h-4" />
                 <span>STICKER TELEMETRY</span>
               </span>
               <span className="px-2 py-0.5 bg-[#FF2A00] text-[#F4F4F0] font-bold text-[10px] uppercase border-2 border-[#F4F4F0]">
-                {selectedSkill.category}
+                {activeSticker.spec}
               </span>
             </div>
 
             <div className="space-y-4">
               <div>
                 <span className="text-[10px] text-[#F4F4F0]/60 block uppercase font-bold">
-                  TECHNOLOGY DISCIPLINE
+                  ACTIVE TECHNOLOGICAL SPEC
                 </span>
-                <span className="font-poster text-4xl sm:text-5xl text-[#CCFF00] uppercase tracking-wide">
-                  {selectedSkill.name}
-                </span>
+                <div className="flex items-center gap-3 mt-1">
+                  <TechIcon name={activeSticker.name} className="w-8 h-8 text-[#CCFF00]" />
+                  <span className="font-poster text-4xl sm:text-5xl text-[#CCFF00] uppercase tracking-wide">
+                    {activeSticker.name}
+                  </span>
+                </div>
               </div>
 
               <div className="p-3 border-2 border-[#F4F4F0] bg-[#1a1a1a]">
                 <span className="text-[10px] text-[#CCFF00] block uppercase font-bold">
-                  PROFICIENCY LEVEL
+                  CORE ROLE / SPECIALIZATION
                 </span>
                 <span className="font-bold text-sm text-[#F4F4F0]">
-                  {selectedSkill.level}
+                  {activeSticker.subtext}
                 </span>
               </div>
 
               <div>
                 <span className="text-[10px] text-[#F4F4F0]/60 block uppercase font-bold">
-                  PRODUCTION WORKFLOWS
+                  PRODUCTION WORKFLOW CAPABILITIES
                 </span>
                 <p className="text-[#F4F4F0] text-xs leading-relaxed mt-1">
-                  {selectedSkill.note}
+                  {activeSticker.note}
                 </p>
               </div>
             </div>
 
             <div className="mt-6 pt-3 border-t-2 border-[#F4F4F0] flex items-center justify-between text-[10px] text-[#CCFF00] font-bold">
-              <span>STATE: SLAPPED ON CANVAS</span>
-              <span>100% RAW</span>
+              <span>STATUS: PRODUCTION LOADED</span>
+              <span>100% DETERMINISTIC</span>
             </div>
           </div>
         </div>
@@ -408,21 +439,22 @@ export const AboutExperiments: React.FC = () => {
                 </p>
               </div>
 
-              {/* Tech Stack Chips & Link */}
+              {/* Tech Stack Chips with Official Tech Logos */}
               <div className="pt-4 border-t-2 border-[#0F0F0F] flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
                 <div className="flex flex-wrap gap-2">
                   {exp.tech.map((t) => (
                     <span
                       key={t}
-                      className="px-2.5 py-1 bg-[#CCFF00] border-2 border-[#0F0F0F] text-[#0F0F0F] text-[10px] font-bold uppercase brutalist-shadow"
+                      className="px-2.5 py-1 bg-[#CCFF00] border-2 border-[#0F0F0F] text-[#0F0F0F] text-[10px] font-bold uppercase brutalist-shadow flex items-center gap-1.5"
                     >
-                      {t}
+                      <TechIcon name={t} className="w-3 h-3 flex-shrink-0" />
+                      <span>{t}</span>
                     </span>
                   ))}
                 </div>
 
                 <a
-                  href="https://github.com/adityachaudhari"
+                  href="https://github.com/Adihtya"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-3 py-1.5 bg-[#0F0F0F] hover:bg-[#FF2A00] text-[#F4F4F0] font-bold uppercase tracking-wider text-xs border-2 border-[#0F0F0F] brutalist-shadow flex items-center gap-1.5 transition-colors"
