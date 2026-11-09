@@ -9,9 +9,15 @@
   --color-port-sage: #757D6F;
 }
 
-/* Strict Brutalist rule: No rounded corners anywhere */
+/* HARD BRUTALIST EDGES ONLY - ZERO RADIUS, ZERO BOX SHADOWS */
 *, *::before, *::after {
   border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+body {
+  background-color: #2D0000 !important;
+  color: #EEEAD7 !important;
 }
 
 /* Lenis smooth scrolling rules */
@@ -35,9 +41,9 @@ html.lenis, html.lenis body {
   pointer-events: none;
 }
 
-/* Custom brutalist scrollbar */
+/* Brutalist geometric scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -45,24 +51,17 @@ html.lenis, html.lenis body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #6D0808;
+  background: #757D6F;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #EEEAD7;
 }
 
-/* Editorial typography tweaks */
 .font-editorial {
   font-family: 'Playfair Display', Georgia, serif;
 }
 
 .font-sans-grotesk {
   font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
-}
-
-/* Grain texture overlay (optional subtle tactile feel) */
-.grain-overlay {
-  background-image: radial-gradient(rgba(238, 234, 215, 0.04) 1px, transparent 0);
-  background-size: 24px 24px;
 }

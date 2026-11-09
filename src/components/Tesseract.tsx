@@ -197,7 +197,7 @@ function HypercubeMesh() {
 
 export const TesseractCanvas: React.FC = () => {
   return (
-    <div className="absolute inset-0 pointer-events-none w-full h-full">
+    <div className="absolute inset-0 z-0 pointer-events-none w-full h-full">
       <Canvas
         camera={{ position: [0, 0, 8.5], fov: 42 }}
         dpr={[1, 2]}
