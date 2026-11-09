@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLenis } from './SmoothScroll';
 import { ArrowDownRight, Sparkles } from 'lucide-react';
+import avatarUrl from '../assets/aditya-avatar.jpg';
 
 export const Bio: React.FC = () => {
   const { scrollTo } = useLenis();
@@ -83,7 +84,7 @@ export const Bio: React.FC = () => {
               {/* The Small Brutalist Portrait Photo */}
               <div className="relative w-24 h-24 sm:w-28 sm:h-28 border-2 border-[#0F0F0F] brutalist-shadow flex-shrink-0 -rotate-2 bg-[#0F0F0F] overflow-hidden group">
                 <img
-                  src="/aditya-avatar.jpg"
+                  src={avatarUrl}
                   alt="Aditya Chaudhari Portrait"
                   className="w-full h-full object-cover transition-transform duration-200 group-hover:scale-105"
                 />
