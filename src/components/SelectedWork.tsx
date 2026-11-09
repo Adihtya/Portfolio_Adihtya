@@ -5,6 +5,9 @@ import { Github, Terminal, ExternalLink } from 'lucide-react';
 import { Project } from '../types';
 import { TechIcon } from './TechIcon';
 import { VasHexadSimulator } from './VasHexadSimulator';
+import { UnfoldArchitectureCard } from './UnfoldArchitectureCard';
+import { WatchOrSkipCard } from './WatchOrSkipCard';
+import { ScopeDiagnosticCard } from './ScopeDiagnosticCard';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -201,7 +204,14 @@ export const SelectedWork: React.FC = () => {
               </div>
             </div>
 
-            {/* Center Grid: Narrative + Visual Matrix */}
+            {project.id === 'unfold' ? (
+              <UnfoldArchitectureCard />
+            ) : project.id === 'watch-or-skip' ? (
+              <WatchOrSkipCard />
+            ) : project.id === 'scope' ? (
+              <ScopeDiagnosticCard />
+            ) : (
+            /* Center Grid: Narrative + Visual Matrix */
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center my-auto">
               {/* Left Column: Loud Typography & Specs */}
               <div
@@ -275,55 +285,6 @@ export const SelectedWork: React.FC = () => {
                       </div>
 
                       {/* Graphics per project */}
-                      {index === 0 && (
-                        <div className="space-y-3 font-mono text-xs">
-                          <div className="bg-[#1a1a1a] p-3 border-2 border-[#F4F4F0]">
-                            <div className="text-[#CCFF00] text-[10px] uppercase font-bold mb-1">
-                              AST PARSER TRACE // UNFOLD
-                            </div>
-                            <div className="text-[#F4F4F0] font-bold text-xs">
-                              Root &gt; Module &gt; FunctionDef [unfold_parser]
-                            </div>
-                            <div className="text-[#F4F4F0]/70 pl-3 text-[11px] mt-1 leading-tight">
-                              ├── Call: ast.parse(source_code)<br />
-                              ├── Visitor: CyclicDependencyResolver()<br />
-                              └── Output: Graph(Nodes=4210, Edges=9840)
-                            </div>
-                          </div>
-                          <div className="flex justify-between items-center text-xs pt-1 border-t border-[#F4F4F0]/30 font-bold">
-                            <span className="text-[#F4F4F0]/60">PARSING LATENCY:</span>
-                            <span className="text-[#CCFF00]">0.82 ms/module</span>
-                          </div>
-                        </div>
-                      )}
-
-                      {index === 2 && (
-                        <div className="space-y-3 font-mono text-xs">
-                          <div className="bg-[#1a1a1a] p-3 border-2 border-[#F4F4F0]">
-                            <div className="text-[#CCFF00] text-[10px] uppercase font-bold mb-1">
-                              VECTOR SIMILARITY CLUSTER
-                            </div>
-                            <div className="grid grid-cols-2 gap-2 text-[11px]">
-                              <div className="p-2 border border-[#F4F4F0]/40">
-                                <div className="text-[#F4F4F0]/60 text-[10px]">EMBEDDING:</div>
-                                <div className="text-[#F4F4F0] font-bold">Dark × Existential</div>
-                              </div>
-                              <div className="p-2 border border-[#F4F4F0]/40">
-                                <div className="text-[#F4F4F0]/60 text-[10px]">COSINE MATCH:</div>
-                                <div className="text-[#FF2A00] font-bold">0.9642</div>
-                              </div>
-                            </div>
-                            <div className="text-[10px] text-[#F4F4F0]/80 mt-2 font-bold">
-                              RECOMMENDED: Blade Runner 2049 (98%), Solaris (94%)
-                            </div>
-                          </div>
-                          <div className="flex justify-between items-center text-xs pt-1 border-t border-[#F4F4F0]/30 font-bold">
-                            <span className="text-[#F4F4F0]/60">INFERENCE SPEED:</span>
-                            <span className="text-[#CCFF00]">24 ms</span>
-                          </div>
-                        </div>
-                      )}
-
                       {index === 3 && (
                         <div className="space-y-3 font-mono text-xs">
                           <div className="bg-[#1a1a1a] p-3 border-2 border-[#F4F4F0]">
@@ -387,6 +348,7 @@ export const SelectedWork: React.FC = () => {
                 )}
               </div>
             </div>
+            )}
 
             {/* Bottom Status Footer */}
             <div className="flex flex-wrap items-center justify-between border-t-2 border-[#0F0F0F] pt-4 mt-6 font-mono text-xs font-bold text-[#0F0F0F]">
