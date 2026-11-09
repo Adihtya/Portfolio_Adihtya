@@ -6,7 +6,7 @@ export const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [currentTime, setCurrentTime] = useState<string>('');
-  const [activeTab, setActiveTab] = useState<string>('#work');
+  const [activeTab, setActiveTab] = useState<string>('#about');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,10 +35,11 @@ export const Navbar: React.FC = () => {
   }, []);
 
   const navItems = [
-    { label: 'SELECTED WORK', target: '#work', number: '01' },
-    { label: 'ABOUT & BIO', target: '#about', number: '02' },
-    { label: 'EXPERIMENTS', target: '#experiments', number: '03' },
-    { label: 'CONTACT', target: '#contact', number: '04' },
+    { label: 'ABOUT & BIO', target: '#about', number: '01' },
+    { label: 'SELECTED WORK', target: '#work', number: '02' },
+    { label: 'TOOLKIT', target: '#toolkit', number: '03' },
+    { label: 'EXPERIMENTS', target: '#experiments', number: '04' },
+    { label: 'CONTACT', target: '#contact', number: '05' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, target: string) => {
@@ -77,7 +78,7 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Desktop Nav Items */}
-          <nav className="hidden lg:flex items-center gap-2.5">
+          <nav className="hidden lg:flex items-center gap-2">
             {navItems.map((item) => {
               const isActive = activeTab === item.target;
               return (
@@ -104,7 +105,7 @@ export const Navbar: React.FC = () => {
           <div className="hidden sm:flex items-center gap-3 text-right">
             <div className="border-2 border-[#0F0F0F] bg-[#F4F4F0] px-2.5 py-1 text-[11px] font-mono font-bold brutalist-shadow">
               <span className="inline-block w-2 h-2 bg-[#CCFF00] border border-[#0F0F0F] mr-1.5" />
-              <span>{currentTime || '15:50:00 IST'}</span>
+              <span>{currentTime || '16:15:00 IST'}</span>
             </div>
 
             <a
@@ -141,7 +142,7 @@ export const Navbar: React.FC = () => {
                 key={item.target}
                 href={item.target}
                 onClick={(e) => handleNavClick(e, item.target)}
-                className="group flex items-baseline justify-between py-3 px-3 border-2 border-[#0F0F0F] bg-[#F4F4F0] hover:bg-[#CCFF00] font-poster text-4xl text-[#0F0F0F] brutalist-shadow"
+                className="group flex items-baseline justify-between py-2.5 px-3 border-2 border-[#0F0F0F] bg-[#F4F4F0] hover:bg-[#CCFF00] font-poster text-3xl text-[#0F0F0F] brutalist-shadow"
               >
                 <span>{item.label}</span>
                 <span className="font-mono text-sm font-bold text-[#FF2A00]">

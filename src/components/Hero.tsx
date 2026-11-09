@@ -55,10 +55,10 @@ export const Hero: React.FC = () => {
           {/* Top-Right: Quick Nav Jump Button */}
           <div className="md:col-span-3 p-2 sm:p-3 flex items-center justify-end gap-2 bg-[#F4F4F0]">
             <button
-              onClick={() => scrollTo('#work')}
+              onClick={() => scrollTo('#about')}
               className="w-full py-2 px-3 bg-[#0F0F0F] hover:bg-[#CCFF00] text-[#F4F4F0] hover:text-[#0F0F0F] font-mono text-xs font-bold uppercase tracking-wider border-2 border-[#0F0F0F] brutalist-shadow flex items-center justify-center gap-1.5"
             >
-              <span>EXPLORE WORK</span>
+              <span>EXPLORE BIO</span>
               <ArrowDownRight className="w-3.5 h-3.5" />
             </button>
           </div>
@@ -129,22 +129,28 @@ export const Hero: React.FC = () => {
 
             <div className="flex flex-wrap items-center gap-2.5">
               <button
-                onClick={() => scrollTo('#work')}
+                onClick={() => scrollTo('#about')}
                 className="px-4 py-2 bg-[#FF2A00] hover:bg-[#CCFF00] text-[#F4F4F0] hover:text-[#0F0F0F] font-mono text-xs uppercase tracking-wider font-bold border-2 border-[#0F0F0F] brutalist-shadow"
+              >
+                ABOUT & BIO ↓
+              </button>
+              <button
+                onClick={() => scrollTo('#work')}
+                className="px-4 py-2 bg-[#CCFF00] hover:bg-[#0F0F0F] text-[#0F0F0F] hover:text-[#CCFF00] font-mono text-xs uppercase tracking-wider font-bold border-2 border-[#0F0F0F] brutalist-shadow"
               >
                 SELECTED WORK ↓
               </button>
               <button
-                onClick={() => scrollTo('#about')}
+                onClick={() => scrollTo('#toolkit')}
                 className="px-4 py-2 bg-[#F4F4F0] hover:bg-[#CCFF00] text-[#0F0F0F] font-mono text-xs uppercase tracking-wider font-bold border-2 border-[#0F0F0F] brutalist-shadow"
               >
-                TOOLKIT & LAB
+                TOOLKIT
               </button>
               <button
                 onClick={() => scrollTo('#contact')}
                 className="px-4 py-2 bg-[#0033FF] hover:bg-[#CCFF00] text-[#F4F4F0] hover:text-[#0F0F0F] font-mono text-xs uppercase tracking-wider font-bold border-2 border-[#0F0F0F] brutalist-shadow"
               >
-                GET IN TOUCH
+                CONTACT
               </button>
             </div>
           </div>
