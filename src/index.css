@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-port-wine: #2D0000;
+  --color-port-crimson: #6D0808;
+  --color-port-ivory: #EEEAD7;
+  --color-port-sage: #757D6F;
+}
+
+/* Strict Brutalist rule: No rounded corners anywhere */
+*, *::before, *::after {
+  border-radius: 0 !important;
+}
+
+/* Lenis smooth scrolling rules */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Custom brutalist scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2D0000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6D0808;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #EEEAD7;
+}
+
+/* Editorial typography tweaks */
+.font-editorial {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-sans-grotesk {
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Grain texture overlay (optional subtle tactile feel) */
+.grain-overlay {
+  background-image: radial-gradient(rgba(238, 234, 215, 0.04) 1px, transparent 0);
+  background-size: 24px 24px;
+}
