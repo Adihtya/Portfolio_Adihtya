@@ -4,6 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Github, Terminal, ExternalLink } from 'lucide-react';
 import { Project } from '../types';
 import { TechIcon } from './TechIcon';
+import { VasHexadSimulator } from './VasHexadSimulator';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -203,7 +204,11 @@ export const SelectedWork: React.FC = () => {
             {/* Center Grid: Narrative + Visual Matrix */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center my-auto">
               {/* Left Column: Loud Typography & Specs */}
-              <div className="lg:col-span-7 flex flex-col gap-5">
+              <div
+                className={`${
+                  project.id === 'vashexad' ? 'lg:col-span-5' : 'lg:col-span-7'
+                } flex flex-col gap-5`}
+              >
                 <div>
                   <div className="font-mono text-xs font-bold text-[#FF2A00] uppercase tracking-widest mb-1">
                     PROJECT ARCHIVE /{project.number}
@@ -248,148 +253,138 @@ export const SelectedWork: React.FC = () => {
               </div>
 
               {/* Right Column: Brutalist Tactical HUD with Hard Shadow */}
-              <div className="lg:col-span-5 flex flex-col gap-4">
-                <div className="border-2 border-[#0F0F0F] bg-[#0F0F0F] text-[#F4F4F0] p-5 sm:p-6 brutalist-shadow relative">
-                  {/* Top HUD Frame */}
-                  <div className="flex items-center justify-between border-b-2 border-[#F4F4F0] pb-3 mb-4 font-mono text-xs font-bold text-[#CCFF00]">
-                    <div className="flex items-center gap-2">
-                      <Terminal className="w-4 h-4 text-[#FF2A00]" />
-                      <span className="uppercase">SYSTEM RUNTIME // TELEMETRY</span>
-                    </div>
-                    <span className="px-2 py-0.5 bg-[#FF2A00] text-[#F4F4F0] border-2 border-[#F4F4F0] text-[10px]">
-                      LIVE
-                    </span>
-                  </div>
+              <div
+                className={`${
+                  project.id === 'vashexad' ? 'lg:col-span-7' : 'lg:col-span-5'
+                } flex flex-col gap-4`}
+              >
+                {project.id === 'vashexad' ? (
+                  <VasHexadSimulator />
+                ) : (
+                  <>
+                    <div className="border-2 border-[#0F0F0F] bg-[#0F0F0F] text-[#F4F4F0] p-5 sm:p-6 brutalist-shadow relative">
+                      {/* Top HUD Frame */}
+                      <div className="flex items-center justify-between border-b-2 border-[#F4F4F0] pb-3 mb-4 font-mono text-xs font-bold text-[#CCFF00]">
+                        <div className="flex items-center gap-2">
+                          <Terminal className="w-4 h-4 text-[#FF2A00]" />
+                          <span className="uppercase">SYSTEM RUNTIME // TELEMETRY</span>
+                        </div>
+                        <span className="px-2 py-0.5 bg-[#FF2A00] text-[#F4F4F0] border-2 border-[#F4F4F0] text-[10px]">
+                          LIVE
+                        </span>
+                      </div>
 
-                  {/* Graphics per project */}
-                  {index === 0 && (
-                    <div className="space-y-3 font-mono text-xs">
-                      <div className="bg-[#1a1a1a] p-3 border-2 border-[#F4F4F0]">
-                        <div className="text-[#CCFF00] text-[10px] uppercase font-bold mb-1">
-                          AST PARSER TRACE // UNFOLD
-                        </div>
-                        <div className="text-[#F4F4F0] font-bold text-xs">
-                          Root &gt; Module &gt; FunctionDef [unfold_parser]
-                        </div>
-                        <div className="text-[#F4F4F0]/70 pl-3 text-[11px] mt-1 leading-tight">
-                          ├── Call: ast.parse(source_code)<br />
-                          ├── Visitor: CyclicDependencyResolver()<br />
-                          └── Output: Graph(Nodes=4210, Edges=9840)
-                        </div>
-                      </div>
-                      <div className="flex justify-between items-center text-xs pt-1 border-t border-[#F4F4F0]/30 font-bold">
-                        <span className="text-[#F4F4F0]/60">PARSING LATENCY:</span>
-                        <span className="text-[#CCFF00]">0.82 ms/module</span>
-                      </div>
-                    </div>
-                  )}
-
-                  {index === 1 && (
-                    <div className="space-y-3 font-mono text-xs">
-                      <div className="bg-[#1a1a1a] p-3 border-2 border-[#F4F4F0]">
-                        <div className="text-[#CCFF00] text-[10px] uppercase font-bold mb-1 flex justify-between">
-                          <span>MEMBRANE POTENTIAL (LIF)</span>
-                          <span className="text-[#FF2A00]">-55 mV [THRESHOLD]</span>
-                        </div>
-                        <div className="text-[11px] tracking-widest text-[#F4F4F0] font-mono leading-tight py-1 font-bold">
-                          V(t) |__/\_||__/\/\_|||__/\_||<br />
-                          I(t) |░░▒▒▓▓██▓▓▒▒░░▒▒▓▓██▓▓▒▒<br />
-                          Spk  |  *   **   *  ***   *  *
-                        </div>
-                      </div>
-                      <div className="flex justify-between items-center text-xs pt-1 border-t border-[#F4F4F0]/30 font-bold">
-                        <span className="text-[#F4F4F0]/60">INTEGRATION TIMESTEP:</span>
-                        <span className="text-[#CCFF00]">dt = 0.05 ms</span>
-                      </div>
-                    </div>
-                  )}
-
-                  {index === 2 && (
-                    <div className="space-y-3 font-mono text-xs">
-                      <div className="bg-[#1a1a1a] p-3 border-2 border-[#F4F4F0]">
-                        <div className="text-[#CCFF00] text-[10px] uppercase font-bold mb-1">
-                          VECTOR SIMILARITY CLUSTER
-                        </div>
-                        <div className="grid grid-cols-2 gap-2 text-[11px]">
-                          <div className="p-2 border border-[#F4F4F0]/40">
-                            <div className="text-[#F4F4F0]/60 text-[10px]">EMBEDDING:</div>
-                            <div className="text-[#F4F4F0] font-bold">Dark × Existential</div>
+                      {/* Graphics per project */}
+                      {index === 0 && (
+                        <div className="space-y-3 font-mono text-xs">
+                          <div className="bg-[#1a1a1a] p-3 border-2 border-[#F4F4F0]">
+                            <div className="text-[#CCFF00] text-[10px] uppercase font-bold mb-1">
+                              AST PARSER TRACE // UNFOLD
+                            </div>
+                            <div className="text-[#F4F4F0] font-bold text-xs">
+                              Root &gt; Module &gt; FunctionDef [unfold_parser]
+                            </div>
+                            <div className="text-[#F4F4F0]/70 pl-3 text-[11px] mt-1 leading-tight">
+                              ├── Call: ast.parse(source_code)<br />
+                              ├── Visitor: CyclicDependencyResolver()<br />
+                              └── Output: Graph(Nodes=4210, Edges=9840)
+                            </div>
                           </div>
-                          <div className="p-2 border border-[#F4F4F0]/40">
-                            <div className="text-[#F4F4F0]/60 text-[10px]">COSINE MATCH:</div>
-                            <div className="text-[#FF2A00] font-bold">0.9642</div>
+                          <div className="flex justify-between items-center text-xs pt-1 border-t border-[#F4F4F0]/30 font-bold">
+                            <span className="text-[#F4F4F0]/60">PARSING LATENCY:</span>
+                            <span className="text-[#CCFF00]">0.82 ms/module</span>
                           </div>
                         </div>
-                        <div className="text-[10px] text-[#F4F4F0]/80 mt-2 font-bold">
-                          RECOMMENDED: Blade Runner 2049 (98%), Solaris (94%)
+                      )}
+
+                      {index === 2 && (
+                        <div className="space-y-3 font-mono text-xs">
+                          <div className="bg-[#1a1a1a] p-3 border-2 border-[#F4F4F0]">
+                            <div className="text-[#CCFF00] text-[10px] uppercase font-bold mb-1">
+                              VECTOR SIMILARITY CLUSTER
+                            </div>
+                            <div className="grid grid-cols-2 gap-2 text-[11px]">
+                              <div className="p-2 border border-[#F4F4F0]/40">
+                                <div className="text-[#F4F4F0]/60 text-[10px]">EMBEDDING:</div>
+                                <div className="text-[#F4F4F0] font-bold">Dark × Existential</div>
+                              </div>
+                              <div className="p-2 border border-[#F4F4F0]/40">
+                                <div className="text-[#F4F4F0]/60 text-[10px]">COSINE MATCH:</div>
+                                <div className="text-[#FF2A00] font-bold">0.9642</div>
+                              </div>
+                            </div>
+                            <div className="text-[10px] text-[#F4F4F0]/80 mt-2 font-bold">
+                              RECOMMENDED: Blade Runner 2049 (98%), Solaris (94%)
+                            </div>
+                          </div>
+                          <div className="flex justify-between items-center text-xs pt-1 border-t border-[#F4F4F0]/30 font-bold">
+                            <span className="text-[#F4F4F0]/60">INFERENCE SPEED:</span>
+                            <span className="text-[#CCFF00]">24 ms</span>
+                          </div>
                         </div>
-                      </div>
-                      <div className="flex justify-between items-center text-xs pt-1 border-t border-[#F4F4F0]/30 font-bold">
-                        <span className="text-[#F4F4F0]/60">INFERENCE SPEED:</span>
-                        <span className="text-[#CCFF00]">24 ms</span>
+                      )}
+
+                      {index === 3 && (
+                        <div className="space-y-3 font-mono text-xs">
+                          <div className="bg-[#1a1a1a] p-3 border-2 border-[#F4F4F0]">
+                            <div className="text-[#CCFF00] text-[10px] uppercase font-bold mb-1">
+                              RUNTIME INSTRUCTION PROFILING // SCOPE
+                            </div>
+                            <div className="space-y-1 text-[11px]">
+                              <div className="flex justify-between">
+                                <span className="text-[#F4F4F0]/60">THREAD MUTEX LOCK:</span>
+                                <span className="text-[#CCFF00] font-bold">0.34 µs [ZERO CONTENTION]</span>
+                              </div>
+                              <div className="flex justify-between">
+                                <span className="text-[#F4F4F0]/60">HEAP ALLOCATIONS:</span>
+                                <span className="text-[#FF2A00] font-bold">0.00% DRIFT</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="flex justify-between items-center text-xs pt-1 border-t border-[#F4F4F0]/30 font-bold">
+                            <span className="text-[#F4F4F0]/60">TRACE OVERHEAD:</span>
+                            <span className="text-[#CCFF00]">&lt; 1.4 µs</span>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Benchmark Metric Pill */}
+                      <div className="mt-4 pt-3 border-t-2 border-[#F4F4F0] flex items-center justify-between font-mono font-bold">
+                        <span className="text-[10px] uppercase text-[#F4F4F0]/80">
+                          {project.metrics.label}
+                        </span>
+                        <span className="text-sm font-bold text-[#0F0F0F] bg-[#CCFF00] px-2 py-0.5 border-2 border-[#F4F4F0]">
+                          {project.metrics.value}
+                        </span>
                       </div>
                     </div>
-                  )}
 
-                  {index === 3 && (
-                    <div className="space-y-3 font-mono text-xs">
-                      <div className="bg-[#1a1a1a] p-3 border-2 border-[#F4F4F0]">
-                        <div className="text-[#CCFF00] text-[10px] uppercase font-bold mb-1">
-                          RUNTIME INSTRUCTION PROFILING // SCOPE
-                        </div>
-                        <div className="space-y-1 text-[11px]">
-                          <div className="flex justify-between">
-                            <span className="text-[#F4F4F0]/60">THREAD MUTEX LOCK:</span>
-                            <span className="text-[#CCFF00] font-bold">0.34 µs [ZERO CONTENTION]</span>
-                          </div>
-                          <div className="flex justify-between">
-                            <span className="text-[#F4F4F0]/60">HEAP ALLOCATIONS:</span>
-                            <span className="text-[#FF2A00] font-bold">0.00% DRIFT</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="flex justify-between items-center text-xs pt-1 border-t border-[#F4F4F0]/30 font-bold">
-                        <span className="text-[#F4F4F0]/60">TRACE OVERHEAD:</span>
-                        <span className="text-[#CCFF00]">&lt; 1.4 µs</span>
-                      </div>
+                    {/* Real Action Links with Hard Shadows */}
+                    <div className="flex flex-wrap items-center gap-3">
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 py-3 px-4 bg-[#FF2A00] hover:bg-[#CCFF00] text-[#F4F4F0] hover:text-[#0F0F0F] font-mono text-xs uppercase tracking-wider font-bold border-2 border-[#0F0F0F] brutalist-shadow flex items-center justify-center gap-2 transition-colors"
+                      >
+                        <Github className="w-4 h-4" />
+                        <span>CODEBASE // GITHUB</span>
+                      </a>
+
+                      {project.liveUrl && (
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="py-3 px-4 bg-[#CCFF00] hover:bg-[#0F0F0F] text-[#0F0F0F] hover:text-[#CCFF00] font-mono text-xs uppercase tracking-wider font-bold border-2 border-[#0F0F0F] brutalist-shadow flex items-center justify-center gap-1.5 transition-colors"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                          <span>LIVE DEMO</span>
+                        </a>
+                      )}
                     </div>
-                  )}
-
-                  {/* Benchmark Metric Pill */}
-                  <div className="mt-4 pt-3 border-t-2 border-[#F4F4F0] flex items-center justify-between font-mono font-bold">
-                    <span className="text-[10px] uppercase text-[#F4F4F0]/80">
-                      {project.metrics.label}
-                    </span>
-                    <span className="text-sm font-bold text-[#0F0F0F] bg-[#CCFF00] px-2 py-0.5 border-2 border-[#F4F4F0]">
-                      {project.metrics.value}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Real Action Links with Hard Shadows */}
-                <div className="flex flex-wrap items-center gap-3">
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-1 py-3 px-4 bg-[#FF2A00] hover:bg-[#CCFF00] text-[#F4F4F0] hover:text-[#0F0F0F] font-mono text-xs uppercase tracking-wider font-bold border-2 border-[#0F0F0F] brutalist-shadow flex items-center justify-center gap-2 transition-colors"
-                  >
-                    <Github className="w-4 h-4" />
-                    <span>CODEBASE // GITHUB</span>
-                  </a>
-
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="py-3 px-4 bg-[#CCFF00] hover:bg-[#0F0F0F] text-[#0F0F0F] hover:text-[#CCFF00] font-mono text-xs uppercase tracking-wider font-bold border-2 border-[#0F0F0F] brutalist-shadow flex items-center justify-center gap-1.5 transition-colors"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      <span>LIVE DEMO</span>
-                    </a>
-                  )}
-                </div>
+                  </>
+                )}
               </div>
             </div>
 
