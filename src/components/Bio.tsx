@@ -66,38 +66,64 @@ export const Bio: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column: Physical ID Card Sticker */}
+          {/* Right Column: Physical ID Card Sticker with Small Photo */}
           <div className="lg:col-span-4 border-2 border-[#0F0F0F] bg-[#F4F4F0] p-6 brutalist-shadow font-mono text-xs relative transform rotate-1">
             <div className="absolute -top-3.5 -right-3 bg-[#FF2A00] text-[#F4F4F0] border-2 border-[#0F0F0F] px-3 py-1 font-bold text-xs uppercase brutalist-shadow rotate-6">
               VERIFIED BUILDER
             </div>
 
+            {/* ID Card Header */}
             <div className="border-b-2 border-[#0F0F0F] pb-3 mb-4 flex items-center justify-between">
               <span className="font-bold uppercase">ID CARD // VOL. 2026</span>
               <span className="w-2.5 h-2.5 bg-[#CCFF00] border-2 border-[#0F0F0F]" />
             </div>
 
-            <div className="space-y-3">
-              <div>
-                <span className="text-[#0F0F0F]/60 block text-[10px] font-bold">NAME:</span>
-                <span className="font-poster text-2xl uppercase">ADITYA CHAUDHARI</span>
+            {/* Small Photo Badge + Name/Institution Layout */}
+            <div className="flex items-start gap-4 mb-4">
+              {/* The Small Brutalist Portrait Photo */}
+              <div className="relative w-24 h-24 sm:w-28 sm:h-28 border-2 border-[#0F0F0F] brutalist-shadow flex-shrink-0 -rotate-2 bg-[#0F0F0F] overflow-hidden group">
+                <img
+                  src="/aditya-avatar.jpg"
+                  alt="Aditya Chaudhari Portrait"
+                  className="w-full h-full object-cover transition-transform duration-200 group-hover:scale-105"
+                />
+                <div className="absolute bottom-0 inset-x-0 bg-[#0F0F0F]/90 text-[#CCFF00] font-mono text-[8px] text-center font-bold uppercase py-0.5 border-t border-[#0F0F0F]">
+                  STRIKE #010
+                </div>
               </div>
-              <div>
-                <span className="text-[#0F0F0F]/60 block text-[10px] font-bold">INSTITUTION:</span>
-                <span className="font-bold">upGrad School of Technology</span>
+
+              {/* Identity Fields beside Photo */}
+              <div className="flex-1 space-y-2">
+                <div>
+                  <span className="text-[#0F0F0F]/60 block text-[10px] font-bold">NAME:</span>
+                  <span className="font-poster text-xl sm:text-2xl uppercase leading-none block">
+                    ADITYA CHAUDHARI
+                  </span>
+                </div>
+                <div>
+                  <span className="text-[#0F0F0F]/60 block text-[10px] font-bold">INSTITUTION:</span>
+                  <span className="font-bold text-xs leading-tight block">
+                    upGrad School of Technology
+                  </span>
+                </div>
               </div>
+            </div>
+
+            {/* Field & Location Details */}
+            <div className="space-y-2.5 pt-3 border-t-2 border-[#0F0F0F]">
               <div>
                 <span className="text-[#0F0F0F]/60 block text-[10px] font-bold">FIELD:</span>
-                <span className="font-bold bg-[#CCFF00] px-1 border-2 border-[#0F0F0F]">
+                <span className="font-bold bg-[#CCFF00] px-1.5 py-0.5 border-2 border-[#0F0F0F] text-xs inline-block">
                   CS & ARTIFICIAL INTELLIGENCE
                 </span>
               </div>
               <div>
                 <span className="text-[#0F0F0F]/60 block text-[10px] font-bold">LOCATION:</span>
-                <span className="font-bold">Pune, Maharashtra, India</span>
+                <span className="font-bold text-xs">Pune, Maharashtra, India</span>
               </div>
             </div>
 
+            {/* Footer Telemetry */}
             <div className="mt-4 pt-3 border-t-2 border-[#0F0F0F] flex items-center justify-between text-[10px] font-bold">
               <span>STATUS: OPEN FOR ROLES</span>
               <span className="text-[#FF2A00]">● 2026</span>
