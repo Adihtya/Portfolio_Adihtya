@@ -135,12 +135,12 @@ export const SelectedWork: React.FC = () => {
     <section
       id="work"
       ref={sectionRef}
-      className="relative bg-[#F4F4F0] text-[#0F0F0F] border-b-4 border-[#0F0F0F] overflow-hidden paper-grid select-none"
+      className="relative bg-[#F4F4F0] text-[#0F0F0F] border-b-2 border-[#0F0F0F] overflow-hidden paper-grid select-none"
     >
-      {/* Sticky Top Telemetry Bar */}
-      <div className="sticky top-12 z-30 w-full bg-[#CCFF00] border-b-2 border-[#0F0F0F] px-4 md:px-12 py-2.5 flex items-center justify-between font-mono text-xs font-bold text-[#0F0F0F] shadow-hard-sm">
+      {/* Sticky Top Telemetry Bar with Hard Shadow */}
+      <div className="sticky top-12 z-30 w-full bg-[#CCFF00] border-b-2 border-[#0F0F0F] px-4 md:px-12 py-2.5 flex items-center justify-between font-mono text-xs font-bold text-[#0F0F0F] brutalist-shadow">
         <div className="flex items-center gap-3">
-          <span className="w-2.5 h-2.5 bg-[#FF2A00] border border-[#0F0F0F] inline-block" />
+          <span className="w-2.5 h-2.5 bg-[#FF2A00] border-2 border-[#0F0F0F] inline-block" />
           <span>SECTION // 01</span>
           <span>SELECTED WORK</span>
         </div>
@@ -151,9 +151,9 @@ export const SelectedWork: React.FC = () => {
             {PROJECTS.map((p, idx) => (
               <span
                 key={p.id}
-                className={`px-2 py-0.5 text-[11px] border border-[#0F0F0F] ${
+                className={`px-2 py-0.5 text-[11px] border-2 border-[#0F0F0F] ${
                   activeProjectIndex === idx
-                    ? 'bg-[#0F0F0F] text-[#CCFF00] font-bold shadow-hard-sm'
+                    ? 'bg-[#0F0F0F] text-[#CCFF00] font-bold brutalist-shadow'
                     : 'bg-[#F4F4F0] text-[#0F0F0F]'
                 }`}
               >
@@ -162,13 +162,13 @@ export const SelectedWork: React.FC = () => {
             ))}
           </div>
 
-          <span className="bg-[#0F0F0F] text-[#F4F4F0] px-2 py-0.5 border border-[#0F0F0F]">
+          <span className="bg-[#0F0F0F] text-[#F4F4F0] px-2 py-0.5 border-2 border-[#0F0F0F]">
             [0{activeProjectIndex + 1} / 0{PROJECTS.length}]
           </span>
         </div>
       </div>
 
-      {/* Main Container: Horizontal on desktop, Vertical on mobile */}
+      {/* Main Container */}
       <div
         ref={containerRef}
         className="flex flex-col lg:flex-row w-full lg:w-[400vw] h-auto lg:h-[calc(100vh-3.2rem)] relative"
@@ -176,7 +176,7 @@ export const SelectedWork: React.FC = () => {
         {PROJECTS.map((project, index) => (
           <div
             key={project.id}
-            className="work-panel w-full lg:w-[100vw] min-h-screen lg:min-h-full flex flex-col justify-between p-6 sm:p-10 lg:p-16 border-b-4 lg:border-b-0 lg:border-r-4 border-[#0F0F0F] relative bg-[#F4F4F0]"
+            className="work-panel w-full lg:w-[100vw] min-h-screen lg:min-h-full flex flex-col justify-between p-6 sm:p-10 lg:p-16 border-b-2 lg:border-b-0 lg:border-r-2 border-[#0F0F0F] relative bg-[#F4F4F0]"
           >
             {/* Background Watermark Index */}
             <div className="absolute right-4 bottom-2 lg:right-12 lg:bottom-8 pointer-events-none select-none font-poster text-[25vw] lg:text-[18vw] text-[#0F0F0F]/[0.05] leading-none">
@@ -186,14 +186,14 @@ export const SelectedWork: React.FC = () => {
             {/* Top Bar inside panel */}
             <div className="flex items-center justify-between border-b-2 border-[#0F0F0F] pb-4 mb-6 font-mono text-xs font-bold">
               <div className="flex items-center gap-3">
-                <span className="px-3 py-1 bg-[#FF2A00] text-[#F4F4F0] border-2 border-[#0F0F0F] shadow-hard-sm uppercase tracking-wider">
+                <span className="px-3 py-1 bg-[#FF2A00] text-[#F4F4F0] border-2 border-[#0F0F0F] brutalist-shadow uppercase tracking-wider">
                   {project.category}
                 </span>
-                <span className="hidden sm:inline bg-[#CCFF00] px-2 py-0.5 border border-[#0F0F0F]">
+                <span className="hidden sm:inline bg-[#CCFF00] px-2 py-0.5 border-2 border-[#0F0F0F]">
                   ID: {project.id.toUpperCase()}
                 </span>
               </div>
-              <div className="text-right bg-[#0F0F0F] text-[#CCFF00] px-2 py-0.5 border border-[#0F0F0F]">
+              <div className="text-right bg-[#0F0F0F] text-[#CCFF00] px-2 py-0.5 border-2 border-[#0F0F0F]">
                 RELEASE // 2025–2026
               </div>
             </div>
@@ -214,7 +214,7 @@ export const SelectedWork: React.FC = () => {
                   </p>
                 </div>
 
-                <p className="font-mono text-sm sm:text-base text-[#0F0F0F] leading-relaxed max-w-2xl bg-[#F4F4F0] p-4 border-2 border-[#0F0F0F] shadow-hard">
+                <p className="font-mono text-sm sm:text-base text-[#0F0F0F] leading-relaxed max-w-2xl bg-[#F4F4F0] p-4 border-2 border-[#0F0F0F] brutalist-shadow">
                   {project.description}
                 </p>
 
@@ -231,12 +231,12 @@ export const SelectedWork: React.FC = () => {
                   ))}
                 </div>
 
-                {/* Tech Stack Chips (Slapped sticker tags) */}
-                <div className="flex flex-wrap gap-2 pt-2">
+                {/* Tech Stack Chips (Slapped sticker tags with hard shadow) */}
+                <div className="flex flex-wrap gap-2.5 pt-2">
                   {project.stack.map((t) => (
                     <span
                       key={t}
-                      className="px-3 py-1 font-mono text-xs font-bold uppercase tracking-wider bg-[#CCFF00] border-2 border-[#0F0F0F] shadow-hard-sm text-[#0F0F0F] hover:rotate-2 transition-transform"
+                      className="px-3 py-1 font-mono text-xs font-bold uppercase tracking-wider bg-[#CCFF00] border-2 border-[#0F0F0F] brutalist-shadow text-[#0F0F0F]"
                     >
                       {t}
                     </span>
@@ -244,16 +244,16 @@ export const SelectedWork: React.FC = () => {
                 </div>
               </div>
 
-              {/* Right Column: Brutalist Tactical HUD */}
+              {/* Right Column: Brutalist Tactical HUD with Hard Shadow */}
               <div className="lg:col-span-5 flex flex-col gap-4">
-                <div className="border-4 border-[#0F0F0F] bg-[#0F0F0F] text-[#F4F4F0] p-5 sm:p-6 shadow-hard-lg relative">
+                <div className="border-2 border-[#0F0F0F] bg-[#0F0F0F] text-[#F4F4F0] p-5 sm:p-6 brutalist-shadow relative">
                   {/* Top HUD Frame */}
                   <div className="flex items-center justify-between border-b-2 border-[#F4F4F0] pb-3 mb-4 font-mono text-xs font-bold text-[#CCFF00]">
                     <div className="flex items-center gap-2">
                       <Terminal className="w-4 h-4 text-[#FF2A00]" />
                       <span className="uppercase">SYSTEM RUNTIME // TELEMETRY</span>
                     </div>
-                    <span className="px-2 py-0.5 bg-[#FF2A00] text-[#F4F4F0] border border-[#F4F4F0] text-[10px]">
+                    <span className="px-2 py-0.5 bg-[#FF2A00] text-[#F4F4F0] border-2 border-[#F4F4F0] text-[10px]">
                       LIVE
                     </span>
                   </div>
@@ -357,7 +357,7 @@ export const SelectedWork: React.FC = () => {
                     <span className="text-[10px] uppercase text-[#F4F4F0]/80">
                       {project.metrics.label}
                     </span>
-                    <span className="text-sm font-bold text-[#0F0F0F] bg-[#CCFF00] px-2 py-0.5 border border-[#F4F4F0]">
+                    <span className="text-sm font-bold text-[#0F0F0F] bg-[#CCFF00] px-2 py-0.5 border-2 border-[#F4F4F0]">
                       {project.metrics.value}
                     </span>
                   </div>
@@ -369,14 +369,14 @@ export const SelectedWork: React.FC = () => {
                     href={project.githubUrl || 'https://github.com/adityachaudhari'}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 py-3 px-4 bg-[#FF2A00] hover:bg-[#CCFF00] text-[#F4F4F0] hover:text-[#0F0F0F] font-mono text-xs uppercase tracking-wider font-bold border-2 border-[#0F0F0F] shadow-hard flex items-center justify-center gap-2 btn-brutal transition-colors"
+                    className="flex-1 py-3 px-4 bg-[#FF2A00] hover:bg-[#CCFF00] text-[#F4F4F0] hover:text-[#0F0F0F] font-mono text-xs uppercase tracking-wider font-bold border-2 border-[#0F0F0F] brutalist-shadow flex items-center justify-center gap-2 transition-colors"
                   >
                     <Github className="w-4 h-4" />
                     <span>SOURCE // GITHUB</span>
                   </a>
                   <a
                     href="#contact"
-                    className="py-3 px-4 bg-[#F4F4F0] hover:bg-[#0F0F0F] text-[#0F0F0F] hover:text-[#F4F4F0] font-mono text-xs uppercase tracking-wider font-bold border-2 border-[#0F0F0F] shadow-hard flex items-center justify-center gap-1 btn-brutal transition-colors"
+                    className="py-3 px-4 bg-[#F4F4F0] hover:bg-[#0F0F0F] text-[#0F0F0F] hover:text-[#F4F4F0] font-mono text-xs uppercase tracking-wider font-bold border-2 border-[#0F0F0F] brutalist-shadow flex items-center justify-center gap-1 transition-colors"
                   >
                     <span>AUDIT</span>
                     <ChevronRight className="w-4 h-4" />
@@ -388,13 +388,13 @@ export const SelectedWork: React.FC = () => {
             {/* Bottom Status Footer */}
             <div className="flex flex-wrap items-center justify-between border-t-2 border-[#0F0F0F] pt-4 mt-6 font-mono text-xs font-bold text-[#0F0F0F]">
               <div className="flex items-center gap-3">
-                <span className="bg-[#CCFF00] px-2 py-0.5 border border-[#0F0F0F]">
+                <span className="bg-[#CCFF00] px-2 py-0.5 border-2 border-[#0F0F0F] brutalist-shadow">
                   PRODUCTION READY
                 </span>
                 <span className="hidden sm:inline">•</span>
                 <span className="hidden sm:inline">RECURRENT DETERMINISTIC</span>
               </div>
-              <div className="bg-[#0F0F0F] text-[#CCFF00] px-2 py-0.5 border border-[#0F0F0F]">
+              <div className="bg-[#0F0F0F] text-[#CCFF00] px-2 py-0.5 border-2 border-[#0F0F0F]">
                 SCROLL FOR NEXT PROTOCOL →
               </div>
             </div>

@@ -159,7 +159,6 @@ export const AboutExperiments: React.FC = () => {
     if (!stickersContainer) return;
 
     const ctx = gsap.context(() => {
-      // Slap spring animation for stickers
       gsap.from('.toolkit-sticker', {
         scale: 0.2,
         opacity: 0,
@@ -182,13 +181,13 @@ export const AboutExperiments: React.FC = () => {
     <section
       id="about"
       ref={sectionRef}
-      className="relative bg-[#F4F4F0] text-[#0F0F0F] border-b-4 border-[#0F0F0F] paper-grid select-none"
+      className="relative bg-[#F4F4F0] text-[#0F0F0F] border-b-2 border-[#0F0F0F] paper-grid select-none"
     >
       {/* SECTION 01: EDITORIAL BIO POSTER */}
       <div className="border-b-2 border-[#0F0F0F] px-4 md:px-12 py-16 md:py-24 max-w-[1800px] mx-auto">
         <div className="flex items-center gap-3 font-mono text-xs font-bold uppercase tracking-widest mb-6">
           <span className="w-3 h-3 bg-[#FF2A00] border-2 border-[#0F0F0F]" />
-          <span className="bg-[#CCFF00] px-2 py-0.5 border border-[#0F0F0F]">
+          <span className="bg-[#CCFF00] px-2 py-0.5 border-2 border-[#0F0F0F] brutalist-shadow">
             SECTION // 02
           </span>
           <span>•</span>
@@ -199,31 +198,31 @@ export const AboutExperiments: React.FC = () => {
           <div className="lg:col-span-8">
             <h2 className="font-poster text-4xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.88] uppercase tracking-normal text-[#0F0F0F]">
               I AM A{' '}
-              <span className="bg-[#CCFF00] px-3 py-0.5 border-4 border-[#0F0F0F] shadow-hard inline-block -rotate-1">
+              <span className="bg-[#CCFF00] px-3 py-0.5 border-2 border-[#0F0F0F] brutalist-shadow inline-block -rotate-1">
                 B.TECH CS & AI
               </span>{' '}
               STUDENT AT UPGRAD SCHOOL OF TECHNOLOGY, PUNE.
             </h2>
 
             <div className="mt-8 space-y-4 font-mono text-sm sm:text-base text-[#0F0F0F] leading-relaxed max-w-3xl">
-              <p className="bg-[#F4F4F0] p-4 border-2 border-[#0F0F0F] shadow-hard">
+              <p className="bg-[#F4F4F0] p-4 border-2 border-[#0F0F0F] brutalist-shadow">
                 Operating at the intersection of deterministic software engineering and computational intelligence. I build high-concurrency backend services, biologically-inspired connectome simulations, and graphics-rich spatial interfaces that translate abstract computational science into tactile realities.
               </p>
-              <p className="text-xs text-[#0F0F0F]/80 p-3 border-2 border-[#0F0F0F] bg-[#CCFF00]/20">
+              <p className="text-xs text-[#0F0F0F]/80 p-3 border-2 border-[#0F0F0F] bg-[#CCFF00]/20 brutalist-shadow">
                 // Rejecting generic SaaS templates: Every system I build explores foundational mechanics — from differential equations governing neuronal spikes to recursive AST grammar engines.
               </p>
             </div>
           </div>
 
           {/* Urban Sticker Bio Card */}
-          <div className="lg:col-span-4 border-4 border-[#0F0F0F] bg-[#F4F4F0] p-6 shadow-hard-lg font-mono text-xs relative transform rotate-1">
-            <div className="absolute -top-4 -right-3 bg-[#FF2A00] text-[#F4F4F0] border-2 border-[#0F0F0F] px-3 py-1 font-bold text-xs uppercase shadow-hard-sm rotate-6">
+          <div className="lg:col-span-4 border-2 border-[#0F0F0F] bg-[#F4F4F0] p-6 brutalist-shadow font-mono text-xs relative transform rotate-1">
+            <div className="absolute -top-3.5 -right-3 bg-[#FF2A00] text-[#F4F4F0] border-2 border-[#0F0F0F] px-3 py-1 font-bold text-xs uppercase brutalist-shadow rotate-6">
               VERIFIED BUILDER
             </div>
 
             <div className="border-b-2 border-[#0F0F0F] pb-3 mb-4 flex items-center justify-between">
               <span className="font-bold uppercase">ID CARD // VOL. 2026</span>
-              <span className="w-2.5 h-2.5 bg-[#CCFF00] border border-[#0F0F0F]" />
+              <span className="w-2.5 h-2.5 bg-[#CCFF00] border-2 border-[#0F0F0F]" />
             </div>
 
             <div className="space-y-3">
@@ -237,7 +236,7 @@ export const AboutExperiments: React.FC = () => {
               </div>
               <div>
                 <span className="text-[#0F0F0F]/60 block text-[10px] font-bold">FIELD:</span>
-                <span className="font-bold bg-[#CCFF00] px-1 border border-[#0F0F0F]">CS & ARTIFICIAL INTELLIGENCE</span>
+                <span className="font-bold bg-[#CCFF00] px-1 border-2 border-[#0F0F0F]">CS & ARTIFICIAL INTELLIGENCE</span>
               </div>
               <div>
                 <span className="text-[#0F0F0F]/60 block text-[10px] font-bold">LOCATION:</span>
@@ -264,16 +263,16 @@ export const AboutExperiments: React.FC = () => {
               THE TOOLKIT STICKERS
             </h3>
           </div>
-          <p className="font-mono text-xs font-bold text-[#0F0F0F] bg-[#CCFF00] px-3 py-1 border-2 border-[#0F0F0F] shadow-hard-sm">
+          <p className="font-mono text-xs font-bold text-[#0F0F0F] bg-[#CCFF00] px-3 py-1 border-2 border-[#0F0F0F] brutalist-shadow">
             [CLICK OR HOVER ANY STICKER TO INSPECT RUNTIME SPECS]
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Scattered Slapped Stickers Container (Left 8 cols) */}
+          {/* Scattered Slapped Stickers Container */}
           <div
             ref={stickersRef}
-            className="lg:col-span-8 flex flex-wrap gap-4 sm:gap-6 p-4 sm:p-8 border-4 border-[#0F0F0F] bg-[#F4F4F0] shadow-hard-lg"
+            className="lg:col-span-8 flex flex-wrap gap-4 sm:gap-6 p-4 sm:p-8 border-2 border-[#0F0F0F] bg-[#F4F4F0] brutalist-shadow"
           >
             {STICKER_TOOLKIT.map((tool) => {
               const isSelected = selectedSkill.name === tool.name;
@@ -282,12 +281,12 @@ export const AboutExperiments: React.FC = () => {
                   key={tool.name}
                   onClick={() => setSelectedSkill(tool)}
                   onMouseEnter={() => setSelectedSkill(tool)}
-                  className={`toolkit-sticker group relative p-3 sm:p-4 border-2 border-[#0F0F0F] font-mono text-left transition-all duration-150 cursor-pointer ${
+                  className={`toolkit-sticker group relative p-3 sm:p-4 border-2 border-[#0F0F0F] brutalist-shadow font-mono text-left cursor-pointer ${
                     tool.color
                   } ${tool.textColor} ${tool.rotation} ${
                     isSelected
-                      ? 'scale-110 shadow-hard-lg z-30 ring-4 ring-[#0F0F0F]'
-                      : 'shadow-hard hover:scale-105 hover:shadow-hard-lg hover:z-20'
+                      ? 'scale-110 z-30 ring-4 ring-[#0F0F0F]'
+                      : 'hover:scale-105 hover:z-20'
                   }`}
                 >
                   <div className="flex items-center justify-between gap-3 text-[10px] font-bold mb-1 opacity-80">
@@ -305,14 +304,14 @@ export const AboutExperiments: React.FC = () => {
             })}
           </div>
 
-          {/* Active Skill Inspector HUD (Right 4 cols) */}
-          <div className="lg:col-span-4 border-4 border-[#0F0F0F] bg-[#0F0F0F] text-[#F4F4F0] p-6 shadow-hard-lg font-mono text-xs relative">
+          {/* Active Skill Inspector HUD */}
+          <div className="lg:col-span-4 border-2 border-[#0F0F0F] bg-[#0F0F0F] text-[#F4F4F0] p-6 brutalist-shadow font-mono text-xs relative">
             <div className="flex items-center justify-between border-b-2 border-[#F4F4F0] pb-3 mb-4">
               <span className="font-bold text-[#CCFF00] uppercase flex items-center gap-2">
                 <Terminal className="w-4 h-4" />
                 <span>STICKER TELEMETRY</span>
               </span>
-              <span className="px-2 py-0.5 bg-[#FF2A00] text-[#F4F4F0] font-bold text-[10px] uppercase border border-[#F4F4F0]">
+              <span className="px-2 py-0.5 bg-[#FF2A00] text-[#F4F4F0] font-bold text-[10px] uppercase border-2 border-[#F4F4F0]">
                 {selectedSkill.category}
               </span>
             </div>
@@ -365,7 +364,7 @@ export const AboutExperiments: React.FC = () => {
               BRUTALIST LAB EXPERIMENTS
             </h3>
           </div>
-          <div className="font-mono text-xs font-bold bg-[#FF2A00] text-[#F4F4F0] px-3 py-1 border-2 border-[#0F0F0F] shadow-hard-sm">
+          <div className="font-mono text-xs font-bold bg-[#FF2A00] text-[#F4F4F0] px-3 py-1 border-2 border-[#0F0F0F] brutalist-shadow">
             4 ACTIVE EXPERIMENTAL PROTOTYPES
           </div>
         </div>
@@ -375,19 +374,19 @@ export const AboutExperiments: React.FC = () => {
           {EXPERIMENTS.map((exp) => (
             <div
               key={exp.id}
-              className="border-4 border-[#0F0F0F] bg-[#F4F4F0] p-6 sm:p-8 flex flex-col justify-between shadow-hard-lg hover:-translate-y-1 transition-transform duration-150 relative"
+              className="border-2 border-[#0F0F0F] bg-[#F4F4F0] p-6 sm:p-8 flex flex-col justify-between brutalist-shadow relative"
             >
               {/* Top Accent Strip */}
               <div className="flex items-center justify-between border-b-2 border-[#0F0F0F] pb-4 mb-6 font-mono text-xs font-bold">
                 <div className="flex items-center gap-3">
-                  <span className="px-2 py-0.5 bg-[#0F0F0F] text-[#CCFF00]">
+                  <span className="px-2 py-0.5 bg-[#0F0F0F] text-[#CCFF00] border-2 border-[#0F0F0F]">
                     {exp.code}
                   </span>
                   <span className="text-[#0F0F0F]/60">[{exp.year}]</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span
-                    className={`inline-block w-2.5 h-2.5 border border-[#0F0F0F] ${
+                    className={`inline-block w-2.5 h-2.5 border-2 border-[#0F0F0F] ${
                       exp.status === 'ACTIVE'
                         ? 'bg-[#FF2A00] animate-pulse'
                         : 'bg-[#CCFF00]'
@@ -415,7 +414,7 @@ export const AboutExperiments: React.FC = () => {
                   {exp.tech.map((t) => (
                     <span
                       key={t}
-                      className="px-2.5 py-1 bg-[#CCFF00] border-2 border-[#0F0F0F] text-[#0F0F0F] text-[10px] font-bold uppercase shadow-hard-sm"
+                      className="px-2.5 py-1 bg-[#CCFF00] border-2 border-[#0F0F0F] text-[#0F0F0F] text-[10px] font-bold uppercase brutalist-shadow"
                     >
                       {t}
                     </span>
@@ -426,7 +425,7 @@ export const AboutExperiments: React.FC = () => {
                   href="https://github.com/adityachaudhari"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-3 py-1.5 bg-[#0F0F0F] hover:bg-[#FF2A00] text-[#F4F4F0] font-bold uppercase tracking-wider text-xs border-2 border-[#0F0F0F] shadow-hard-sm flex items-center gap-1.5 transition-colors"
+                  className="px-3 py-1.5 bg-[#0F0F0F] hover:bg-[#FF2A00] text-[#F4F4F0] font-bold uppercase tracking-wider text-xs border-2 border-[#0F0F0F] brutalist-shadow flex items-center gap-1.5 transition-colors"
                 >
                   <span>SOURCE CODE</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />

@@ -10,7 +10,7 @@
   --strike-yellow: #CCFF00;
 }
 
-/* ZERO ROUNDED CORNERS - PURE RAZOR SHARP URBAN BRUTALISM */
+/* STRICT ZERO BORDER RADIUS ACROSS THE ENTIRE DOM */
 *, *::before, *::after {
   border-radius: 0 !important;
 }
@@ -19,6 +19,16 @@ body {
   background-color: #F4F4F0 !important;
   color: #0F0F0F !important;
   font-family: 'Space Mono', 'IBM Plex Mono', monospace;
+}
+
+/* EXACT BRUTALIST HARD SHADOW UTILITY */
+.brutalist-shadow {
+  box-shadow: 4px 4px 0px 0px #0F0F0F;
+}
+.brutalist-shadow:hover {
+  box-shadow: 6px 6px 0px 0px #0F0F0F;
+  transform: translate(-2px, -2px);
+  transition: all 0.2s ease-in-out;
 }
 
 /* Lenis smooth scrolling rules */
@@ -61,21 +71,6 @@ html.lenis, html.lenis body {
 .paper-grid {
   background-size: 32px 32px;
   background-image: 
-    linear-gradient(to right, rgba(15, 15, 15, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 15, 15, 0.06) 1px, transparent 1px);
-}
-
-/* Tactile Sticker Button press behavior */
-.btn-brutal {
-  transition: transform 0.1s ease, box-shadow 0.1s ease;
-}
-
-.btn-brutal:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 6px 6px 0px 0px #0F0F0F;
-}
-
-.btn-brutal:active {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0px 0px #0F0F0F;
+    linear-gradient(to right, rgba(15, 15, 15, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 15, 15, 0.07) 1px, transparent 1px);
 }
