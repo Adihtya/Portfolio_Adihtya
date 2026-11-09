@@ -1,122 +1,108 @@
-import React, { useState, useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useState } from 'react';
 import { ArrowUpRight, Terminal } from 'lucide-react';
 import { Experiment } from '../types';
 import { TechIcon } from './TechIcon';
 
-gsap.registerPlugin(ScrollTrigger);
-
 interface ToolkitSticker {
   id: string;
   name: string;
-  bg: string;
-  text: string;
+  bgColor: string;
+  textColor: string;
+  rotationClass: string;
   subtext: string;
-  tag: string;
   spec: string;
-  rotation: string;
   note: string;
 }
 
 const TOOLKIT_STICKERS: ToolkitSticker[] = [
   {
     id: '01',
-    name: 'PYTHON',
-    bg: 'bg-[#CCFF00]',
-    text: 'text-[#0F0F0F]',
+    name: 'Python',
+    bgColor: 'bg-[#CCFF00]',
+    textColor: 'text-[#0F0F0F]',
+    rotationClass: '-rotate-2',
     subtext: 'ADVANCED ARCHITECT',
-    tag: 'SYS // CORE',
     spec: 'V3.12+',
-    rotation: '-rotate-2',
     note: 'NumPy, AST grammar decomposition, LIF connectome simulations, vector embeddings, high-throughput microservices.',
   },
   {
     id: '02',
     name: 'C++',
-    bg: 'bg-[#FF2A00]',
-    text: 'text-[#F4F4F0]',
+    bgColor: 'bg-[#FF2A00]',
+    textColor: 'text-[#0F0F0F]',
+    rotationClass: 'rotate-3',
     subtext: 'PERFORMANCE KERNEL',
-    tag: 'SYS // KERNEL',
     spec: 'C++20',
-    rotation: 'rotate-3',
     note: 'Low-latency execution loops, memory management, deterministic data structures, numerical Euler integrators.',
   },
   {
     id: '03',
-    name: 'REACT',
-    bg: 'bg-[#0033FF]',
-    text: 'text-[#FFFFFF]',
+    name: 'React',
+    bgColor: 'bg-[#0033FF]',
+    textColor: 'text-[#FFFFFF]',
+    rotationClass: '-rotate-1',
     subtext: 'INTERACTIVE SYSTEMS',
-    tag: 'UI // REACTIVE',
     spec: 'V18/19',
-    rotation: '-rotate-1',
     note: 'Complex state trees, canvas hooks, high-density telemetry dashboards, custom gesture controllers.',
   },
   {
     id: '04',
-    name: 'NEXT.JS',
-    bg: 'bg-[#FFFFFF]',
-    text: 'text-[#0F0F0F]',
+    name: 'Next.js',
+    bgColor: 'bg-[#FFFFFF]',
+    textColor: 'text-[#0F0F0F]',
+    rotationClass: 'rotate-2',
     subtext: 'PRODUCTION SCALE',
-    tag: 'WEB // EDGE',
     spec: 'APP ROUTER',
-    rotation: 'rotate-4',
     note: 'Server components, edge API streaming, dynamic ISR architectures, high-performance static rendering.',
   },
   {
     id: '05',
-    name: 'FASTAPI',
-    bg: 'bg-[#CCFF00]',
-    text: 'text-[#0F0F0F]',
+    name: 'FastAPI',
+    bgColor: 'bg-[#CCFF00]',
+    textColor: 'text-[#0F0F0F]',
+    rotationClass: '-rotate-3',
     subtext: 'HIGH-THROUGHPUT API',
-    tag: 'API // ASYNC',
     spec: 'ASGI ASYNC',
-    rotation: '-rotate-3',
     note: 'Asynchronous event loops, OpenAPI schema generation, vector retrieval inference pipelines, microsecond caching.',
   },
   {
     id: '06',
-    name: 'OPENCV',
-    bg: 'bg-[#FF2A00]',
-    text: 'text-[#F4F4F0]',
+    name: 'OpenCV',
+    bgColor: 'bg-[#FF2A00]',
+    textColor: 'text-[#0F0F0F]',
+    rotationClass: 'rotate-1',
     subtext: 'COMPUTER VISION',
-    tag: 'CV // SPATIAL',
     spec: 'REAL-TIME',
-    rotation: 'rotate-2',
     note: 'Spatial plane projection, 21 3D hand keypoint tracking, frame matrix transformation, gesture classification.',
   },
   {
     id: '07',
-    name: 'THREE.JS',
-    bg: 'bg-[#0033FF]',
-    text: 'text-[#FFFFFF]',
+    name: 'Three.js',
+    bgColor: 'bg-[#0033FF]',
+    textColor: 'text-[#FFFFFF]',
+    rotationClass: '-rotate-2',
     subtext: 'WEBGL SPECIALIST',
-    tag: '3D // SHADERS',
     spec: 'R3F + DREI',
-    rotation: '-rotate-2',
     note: '4D hypercube projections, procedural materials, instanced matrix transforms, camera viewport math.',
   },
   {
     id: '08',
-    name: 'PYTORCH',
-    bg: 'bg-[#FFFFFF]',
-    text: 'text-[#0F0F0F]',
+    name: 'PyTorch',
+    bgColor: 'bg-[#FFFFFF]',
+    textColor: 'text-[#0F0F0F]',
+    rotationClass: 'rotate-2',
     subtext: 'DEEP LEARNING',
-    tag: 'AI // TENSOR',
     spec: 'CUDA ACCEL',
-    rotation: 'rotate-3',
     note: 'Tensor algebra, neural connectomics, embedding spaces, loss function engineering, transformer models.',
   },
   {
     id: '09',
-    name: 'DOCKER',
-    bg: 'bg-[#CCFF00]',
-    text: 'text-[#0F0F0F]',
+    name: 'Docker',
+    bgColor: 'bg-[#CCFF00]',
+    textColor: 'text-[#0F0F0F]',
+    rotationClass: '-rotate-1',
     subtext: 'DETERMINISTIC DEVOPS',
-    tag: 'OPS // ISOLATION',
     spec: 'HERMETIC',
-    rotation: '-rotate-1',
     note: 'Multi-stage hermetic containerization, reproducible development sandboxes, isolated compute environments.',
   },
 ];
@@ -166,36 +152,10 @@ const EXPERIMENTS: Experiment[] = [
 
 export const AboutExperiments: React.FC = () => {
   const [activeSticker, setActiveSticker] = useState<ToolkitSticker>(TOOLKIT_STICKERS[0]);
-  const sectionRef = useRef<HTMLElement>(null);
-  const stickersContainerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const container = stickersContainerRef.current;
-    if (!container) return;
-
-    const ctx = gsap.context(() => {
-      gsap.from('.brutalist-sticker-item', {
-        scale: 0.3,
-        opacity: 0,
-        y: 40,
-        rotation: () => (Math.random() - 0.5) * 40,
-        duration: 0.65,
-        stagger: 0.07,
-        ease: 'back.out(2)',
-        scrollTrigger: {
-          trigger: container,
-          start: 'top 80%',
-        },
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
 
   return (
     <section
       id="about"
-      ref={sectionRef}
       className="relative bg-[#F4F4F0] text-[#0F0F0F] border-b-2 border-[#0F0F0F] paper-grid select-none"
     >
       {/* SECTION 01: EDITORIAL BIO POSTER */}
@@ -284,55 +244,40 @@ export const AboutExperiments: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          {/* Scattered Physical Stickers Container (Slightly overlapping flex-wrap layout) */}
-          <div
-            ref={stickersContainerRef}
-            className="lg:col-span-8 p-4 sm:p-8 border-2 border-[#0F0F0F] bg-[#F4F4F0] brutalist-shadow"
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 items-stretch">
-              {TOOLKIT_STICKERS.map((sticker) => {
-                const isSelected = activeSticker.id === sticker.id;
-                return (
-                  <button
-                    key={sticker.id}
-                    onClick={() => setActiveSticker(sticker)}
-                    onMouseEnter={() => setActiveSticker(sticker)}
-                    className={`brutalist-sticker-item group relative p-4 sm:p-5 border-2 border-[#0F0F0F] brutalist-shadow text-left cursor-pointer flex flex-col justify-between transition-all duration-200 ${
-                      sticker.bg
-                    } ${sticker.text} ${sticker.rotation} ${
-                      isSelected
-                        ? 'scale-105 z-30 ring-4 ring-[#0F0F0F]'
-                        : 'hover:scale-105 hover:z-20 hover:rotate-0'
-                    }`}
-                  >
-                    {/* Top-left / top-right micro-metadata row */}
-                    <div className="flex items-center justify-between text-[10px] font-mono font-bold tracking-wider opacity-80 mb-2 border-b border-current pb-1.5">
-                      <span>{sticker.tag}</span>
-                      <span>{sticker.spec}</span>
-                    </div>
+          {/* Main Container on Left: flex-wrap with specific classes requested */}
+          <div className="lg:col-span-8 border-2 border-[#0F0F0F] bg-[#F4F4F0] brutalist-shadow min-h-[520px]">
+            <div className="flex flex-wrap gap-8 p-12 justify-center items-center content-start h-full w-full overflow-y-auto relative">
+              {TOOLKIT_STICKERS.map((sticker) => (
+                <div
+                  key={sticker.id}
+                  onClick={() => setActiveSticker(sticker)}
+                  onMouseEnter={() => setActiveSticker(sticker)}
+                  className={`relative flex flex-col justify-between w-64 h-40 p-4 border-[3px] border-[#0F0F0F] brutalist-shadow transition-transform cursor-pointer hover:z-50 hover:scale-105 ${sticker.rotationClass} ${sticker.bgColor} ${sticker.textColor}`}
+                >
+                  {/* Top row: micro metadata */}
+                  <div className="flex justify-between text-xs font-mono font-bold tracking-tighter uppercase">
+                    <span>{sticker.id}</span>
+                    <span>#CORE</span>
+                  </div>
 
-                    {/* Massive center title with official tech logo */}
-                    <div className="flex items-center gap-2.5 my-3">
-                      <TechIcon name={sticker.name} className="w-8 h-8 sm:w-9 sm:h-9 flex-shrink-0" />
-                      <span className="font-poster text-3xl sm:text-4xl uppercase tracking-wide leading-none">
-                        {sticker.name}
-                      </span>
-                    </div>
+                  {/* Center: Massive Title & Logo */}
+                  <div className="flex items-center gap-3">
+                    <TechIcon name={sticker.name} size={32} className="w-8 h-8 flex-shrink-0" />
+                    <span className="text-4xl font-black uppercase tracking-tighter leading-none font-poster">
+                      {sticker.name}
+                    </span>
+                  </div>
 
-                    {/* Bottom subtext row */}
-                    <div className="pt-2 border-t border-current flex items-center justify-between font-mono text-[11px] font-bold uppercase tracking-wider">
-                      <span className="bg-[#0F0F0F] text-[#F4F4F0] px-1.5 py-0.5">
-                        {sticker.subtext}
-                      </span>
-                      <span className="text-[10px] opacity-75">#{sticker.id}</span>
-                    </div>
-                  </button>
-                );
-              })}
+                  {/* Bottom row: subtext */}
+                  <div className="text-sm font-bold uppercase tracking-tight border-b-2 border-current pb-1 w-max font-mono">
+                    {sticker.subtext}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Active Sticker Inspector HUD */}
+          {/* Active Sticker Inspector HUD on Right */}
           <div className="lg:col-span-4 border-2 border-[#0F0F0F] bg-[#0F0F0F] text-[#F4F4F0] p-6 brutalist-shadow font-mono text-xs relative sticky top-24">
             <div className="flex items-center justify-between border-b-2 border-[#F4F4F0] pb-3 mb-4">
               <span className="font-bold text-[#CCFF00] uppercase flex items-center gap-2">
@@ -350,7 +295,7 @@ export const AboutExperiments: React.FC = () => {
                   ACTIVE TECHNOLOGICAL SPEC
                 </span>
                 <div className="flex items-center gap-3 mt-1">
-                  <TechIcon name={activeSticker.name} className="w-8 h-8 text-[#CCFF00]" />
+                  <TechIcon name={activeSticker.name} size={32} className="w-8 h-8 text-[#CCFF00]" />
                   <span className="font-poster text-4xl sm:text-5xl text-[#CCFF00] uppercase tracking-wide">
                     {activeSticker.name}
                   </span>
